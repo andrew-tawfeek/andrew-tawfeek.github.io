@@ -1,1 +1,402 @@
-test
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Andrew R. Tawfeek — Mathematics PhD candidate at the University of Washington. Research in topological data analysis, algebraic geometry, and machine learning." />
+  <meta name="author" content="Andrew R. Tawfeek" />
+  <title>Andrew R. Tawfeek</title>
+
+  <!-- Preconnect for Google Fonts performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Apply theme immediately to prevent flash of wrong theme -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('site-theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ======================================================================
+       Navigation Bar
+       ====================================================================== -->
+  <header role="banner">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="nav-inner">
+
+        <!-- Site wordmark -->
+        <a class="nav-brand" href="index.html">Andrew R. Tawfeek</a>
+
+        <div class="nav-spacer"></div>
+
+        <!-- Desktop page links -->
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="tutorials.html">Tutorials</a></li>
+          <li><a href="cv.html">CV</a></li>
+        </ul>
+
+        <!-- Desktop social icons -->
+        <div class="nav-social" aria-label="Social links">
+
+          <!-- Email -->
+          <a href="mailto:atawfeek@uw.edu" aria-label="Email Andrew" title="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/andrew-tawfeek" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.021C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+
+          <!-- Google Scholar -->
+          <a href="https://scholar.google.com/citations?user=Za4CG6sAAAAJ&hl=en&oi=sra" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile" title="Google Scholar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5 12 0z"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/andrew-tawfeek" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+
+        </div>
+
+        <!-- Dark/light theme toggle -->
+        <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme">
+          <!-- Sun icon — visible in dark mode -->
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1zm0 16a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zm10-9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm14.95 5.536-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 0 0-1.414-1.414zm-15.9-11.07 1.414 1.414a1 1 0 1 0 1.414-1.414L4.464 4.05a1 1 0 0 0-1.414 1.415zm14.486 0a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414zM4.464 18.95a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 1 0-1.414-1.414L4.464 18.95z"/>
+          </svg>
+          <!-- Moon icon — visible in light mode -->
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+          </svg>
+        </button>
+
+        <!-- Hamburger button — mobile only -->
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+
+      </div>
+    </nav>
+
+    <!-- Mobile nav drawer -->
+    <nav id="mobile-drawer" class="nav-mobile-drawer" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="tutorials.html">Tutorials</a>
+      <a href="cv.html">CV</a>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       Page Body
+       ====================================================================== -->
+  <div class="page-wrapper">
+    <main class="page-content" id="main-content">
+      <div class="home-layout">
+
+        <!-- ==================================================================
+             SIDEBAR
+             ================================================================== -->
+        <aside class="sidebar" aria-label="Profile information">
+
+          <div class="sidebar-photo">
+            <img src="assets/img/profile.jpg" alt="Andrew R. Tawfeek" />
+          </div>
+
+          <p class="sidebar-name">Andrew R. Tawfeek</p>
+          <p class="sidebar-title">Mathematician &amp; ML Researcher</p>
+          <p class="sidebar-affiliation">
+            University of Washington<br />
+            Georgia Tech Research Institute
+          </p>
+
+          <!-- Sidebar social links with labels -->
+          <nav class="sidebar-social" aria-label="Contact and profile links">
+
+            <a href="mailto:atawfeek@uw.edu" aria-label="Send email to atawfeek@uw.edu">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              Email
+            </a>
+
+            <a href="https://github.com/andrew-tawfeek" target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.021C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              GitHub
+            </a>
+
+            <a href="https://scholar.google.com/citations?user=Za4CG6sAAAAJ&hl=en&oi=sra" target="_blank" rel="noopener noreferrer" aria-label="View Google Scholar profile">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5 12 0z"/>
+              </svg>
+              Scholar
+            </a>
+
+            <a href="https://www.linkedin.com/in/andrew-tawfeek" target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+
+          </nav>
+
+          <!-- CV download -->
+          <a href="cv.html" class="btn-cv">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/>
+            </svg>
+            Download CV
+          </a>
+
+        </aside>
+
+        <!-- ==================================================================
+             MAIN CONTENT
+             ================================================================== -->
+        <div class="main-content">
+
+          <!-- Bio -->
+          <section class="content-section" aria-labelledby="bio-heading">
+            <h2 class="section-title" id="bio-heading">About</h2>
+            <div class="bio-text">
+              <p>
+                I am a final-year Mathematics PhD candidate at the University of Washington,
+                advised by
+                <a href="https://sites.math.washington.edu/~kovacs/" target="_blank" rel="noopener noreferrer">Sándor Kovács</a>
+                and
+                <a href="https://sites.math.washington.edu/~shokrieh/" target="_blank" rel="noopener noreferrer">Farbod Shokrieh</a>.
+                My research develops tools at the intersection of algebraic geometry, topological data analysis,
+                and machine learning — with applications to neural network interpretability and quantitative modeling.
+              </p>
+              <p>
+                I am also a Research Scientist at the Georgia Tech Research Institute, where I build algorithms
+                for measuring geometric and topological structure in high-dimensional spaces. My work there led
+                to a published tool for analyzing ReLU neural network activation patterns, accepted to the
+                Proceedings of Machine Learning Research (2025).
+              </p>
+              <p>
+                I am currently seeking quantitative research, ML engineering, and research scientist roles
+                starting Summer 2026.
+              </p>
+            </div>
+          </section>
+
+          <!-- Research Interests -->
+          <section class="content-section" aria-labelledby="interests-heading">
+            <h2 class="section-title" id="interests-heading">Research Interests</h2>
+            <div class="interest-tags" role="list" aria-label="Research interest areas">
+              <span class="interest-tag" role="listitem">Tropical Geometry</span>
+              <span class="interest-tag" role="listitem">Topological Data Analysis</span>
+              <span class="interest-tag" role="listitem">Machine Learning</span>
+              <span class="interest-tag" role="listitem">Neural Network Interpretability</span>
+              <span class="interest-tag" role="listitem">Algebraic Geometry</span>
+              <span class="interest-tag" role="listitem">Quantitative Finance</span>
+              <span class="interest-tag" role="listitem">Knot Theory</span>
+            </div>
+          </section>
+
+          <!-- News -->
+          <section class="content-section" aria-labelledby="news-heading">
+            <h2 class="section-title" id="news-heading">News</h2>
+            <div class="news-list" role="list">
+
+              <div class="news-item" role="listitem">
+                <time class="news-date" datetime="2026-03">Mar 2026</time>
+                <p class="news-text">
+                  Presenting <em>Taming Wild Knots with Recursive Mosaics</em> at the
+                  <a href="https://www.ams.org/meetings/sectional/sectional.html" target="_blank" rel="noopener noreferrer">AMS Western Sectional Meeting</a>,
+                  Boise State University.
+                </p>
+              </div>
+
+              <div class="news-item" role="listitem">
+                <time class="news-date" datetime="2026-01">Jan 2026</time>
+                <p class="news-text">
+                  Talk at the
+                  <a href="https://jointmathematicsmeetings.org/" target="_blank" rel="noopener noreferrer">Joint Mathematics Meetings</a>,
+                  Washington DC — AMS Special Session on Knots, Links, Geometry, and Related 3-Manifolds.
+                </p>
+              </div>
+
+              <div class="news-item" role="listitem">
+                <time class="news-date" datetime="2025-12">Dec 2025</time>
+                <p class="news-text">
+                  Invited talk at Topology, Algebra, and Geometry in Data Science, UC San Diego.
+                </p>
+              </div>
+
+              <div class="news-item" role="listitem">
+                <time class="news-date" datetime="2025">2025</time>
+                <p class="news-text">
+                  Paper <em>Topological Signatures of ReLU Neural Network Activation Patterns</em>
+                  accepted to the
+                  <a href="https://proceedings.mlr.press/" target="_blank" rel="noopener noreferrer">Proceedings of Machine Learning Research</a>.
+                </p>
+              </div>
+
+              <div class="news-item" role="listitem">
+                <time class="news-date" datetime="2025-05">May 2025</time>
+                <p class="news-text">
+                  Joined the Georgia Tech Research Institute as a Research Scientist.
+                </p>
+              </div>
+
+              <div class="news-item" role="listitem">
+                <time class="news-date" datetime="2024">2024</time>
+                <p class="news-text">
+                  Published
+                  <a href="https://doi.org/10.2140/jsag.2024.14.175" target="_blank" rel="noopener noreferrer">
+                    <em>A¹-Brouwer Degrees in Macaulay2</em></a>
+                  in the Journal of Software for Algebra and Geometry.
+                </p>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Selected Publications -->
+          <section class="content-section" aria-labelledby="pubs-heading">
+            <h2 class="section-title" id="pubs-heading">Selected Publications</h2>
+            <div class="pub-list" role="list">
+
+              <!-- 1. Wild Knots — In preparation -->
+              <article class="pub-card" role="listitem">
+                <div class="pub-title">
+                  Taming Wild Knots with Recursive Mosaics
+                  <span class="pub-status in-prep">In preparation</span>
+                </div>
+                <p class="pub-authors">
+                  Mary Deng, Allison K. Henrich, Sean H. Kawano, <strong>Andrew R. Tawfeek</strong>
+                </p>
+                <p class="pub-venue">Manuscript in preparation, 2025&ndash;2026</p>
+                <div class="pub-links"></div>
+              </article>
+
+              <!-- 2. Tropical Framework — arXiv preprint -->
+              <article class="pub-card" role="listitem">
+                <div class="pub-title">
+                  <a href="https://arxiv.org/abs/2411.10578" target="_blank" rel="noopener noreferrer">
+                    A Tropical Framework for using Porteous' Formula
+                  </a>
+                  <span class="pub-status under-revision">Under revision</span>
+                </div>
+                <p class="pub-authors"><strong>Andrew R. Tawfeek</strong></p>
+                <p class="pub-venue">Preprint, arXiv:2411.10578</p>
+                <div class="pub-links">
+                  <a class="pub-link" href="https://arxiv.org/abs/2411.10578" target="_blank" rel="noopener noreferrer">arXiv</a>
+                  <a class="pub-link" href="https://arxiv.org/pdf/2411.10578" target="_blank" rel="noopener noreferrer">PDF</a>
+                </div>
+              </article>
+
+              <!-- 3. ReLU Signatures — PMLR 2025 -->
+              <article class="pub-card" role="listitem">
+                <div class="pub-title">
+                  <a href="https://arxiv.org/abs/2510.12700" target="_blank" rel="noopener noreferrer">
+                    Topological Signatures of ReLU Neural Network Activation Patterns
+                  </a>
+                  <span class="pub-status accepted">PMLR 2025</span>
+                </div>
+                <p class="pub-authors">
+                  Vicente Bosca, Tatum Rask, Branden Stone, <strong>Andrew R. Tawfeek</strong>, Sunia Tanweer
+                </p>
+                <p class="pub-venue">Proceedings of Machine Learning Research, 2025</p>
+                <div class="pub-links">
+                  <a class="pub-link" href="https://arxiv.org/abs/2510.12700" target="_blank" rel="noopener noreferrer">arXiv</a>
+                  <a class="pub-link" href="https://arxiv.org/pdf/2510.12700" target="_blank" rel="noopener noreferrer">PDF</a>
+                  <a class="pub-link" href="https://github.com/gtri/neural-network-elements" target="_blank" rel="noopener noreferrer">Code</a>
+                  <a class="pub-link" href="https://andrew-tawfeek.github.io/neural-network-elements/" target="_blank" rel="noopener noreferrer">Demo</a>
+                </div>
+              </article>
+
+              <!-- 4. A1-Brouwer — JSAG 2024 -->
+              <article class="pub-card" role="listitem">
+                <div class="pub-title">
+                  <a href="https://doi.org/10.2140/jsag.2024.14.175" target="_blank" rel="noopener noreferrer">
+                    A¹-Brouwer Degrees in Macaulay2
+                  </a>
+                </div>
+                <p class="pub-authors">
+                  Nikita Borisov, Thomas Brazelton, Frenly Espino, Thomas Hagedorn, Zhaobo Han,
+                  Jordy Lopez Garcia, Joel Louwsma, Gabriel Ong, <strong>Andrew R. Tawfeek</strong>
+                </p>
+                <p class="pub-venue">Journal of Software for Algebra and Geometry, vol.&nbsp;14, 2024</p>
+                <div class="pub-links">
+                  <a class="pub-link" href="https://doi.org/10.2140/jsag.2024.14.175" target="_blank" rel="noopener noreferrer">DOI</a>
+                </div>
+              </article>
+
+              <!-- 5. Discrete Gradients — Annals of Combinatorics 2023 -->
+              <article class="pub-card" role="listitem">
+                <div class="pub-title">
+                  <a href="https://doi.org/10.1007/s00026-023-00655-1" target="_blank" rel="noopener noreferrer">
+                    On Discrete Gradient Vector Fields and Laplacians of Simplicial Complexes
+                  </a>
+                </div>
+                <p class="pub-authors">Ivan Contreras, <strong>Andrew R. Tawfeek</strong></p>
+                <p class="pub-venue">Annals of Combinatorics, 2023</p>
+                <div class="pub-links">
+                  <a class="pub-link" href="https://doi.org/10.1007/s00026-023-00655-1" target="_blank" rel="noopener noreferrer">DOI</a>
+                  <a class="pub-link" href="https://github.com/andrew-tawfeek/discrete-gradients" target="_blank" rel="noopener noreferrer">Code</a>
+                </div>
+              </article>
+
+              <!-- 6. Quantum Jacobi — RNT 2022 -->
+              <article class="pub-card" role="listitem">
+                <div class="pub-title">
+                  <a href="https://link.springer.com/article/10.1007/s40993-021-00304-7" target="_blank" rel="noopener noreferrer">
+                    Quantum Jacobi Forms and Sums of Tails Identities
+                  </a>
+                </div>
+                <p class="pub-authors">
+                  Amanda Folsom, Lizzie Pratt, Noah Solomon, <strong>Andrew R. Tawfeek</strong>
+                </p>
+                <p class="pub-venue">Research in Number Theory, 2022</p>
+                <div class="pub-links">
+                  <a class="pub-link" href="https://link.springer.com/article/10.1007/s40993-021-00304-7" target="_blank" rel="noopener noreferrer">DOI</a>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+        </div><!-- /.main-content -->
+      </div><!-- /.home-layout -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        &copy; 2026 Andrew R. Tawfeek &middot;
+        <a href="https://github.com/andrew-tawfeek/andrew-tawfeek.github.io" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+      </div>
+    </footer>
+  </div><!-- /.page-wrapper -->
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
