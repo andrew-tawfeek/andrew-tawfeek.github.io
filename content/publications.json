@@ -1,0 +1,70 @@
+[
+  {
+    "title": "Taming Wild Knots with Recursive Mosaics",
+    "authors": "Mary Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
+    "venue": "Manuscript in preparation, 2025\u20132026",
+    "year": 2026,
+    "status": "In preparation",
+    "statusClass": "in-prep",
+    "links": []
+  },
+  {
+    "title": "A Tropical Framework for using Porteous' Formula",
+    "authors": "Andrew R. Tawfeek",
+    "venue": "Preprint, arXiv:2411.10578",
+    "year": 2024,
+    "url": "https://arxiv.org/abs/2411.10578",
+    "status": "Under revision",
+    "statusClass": "under-revision",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2411.10578" },
+      { "label": "PDF", "url": "https://arxiv.org/pdf/2411.10578" }
+    ]
+  },
+  {
+    "title": "Topological Signatures of ReLU Neural Network Activation Patterns",
+    "authors": "Vicente Bosca, Tatum Rask, Branden Stone, Andrew R. Tawfeek, Sunia Tanweer",
+    "venue": "Proceedings of Machine Learning Research, 2025",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2510.12700",
+    "status": "PMLR 2025",
+    "statusClass": "accepted",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2510.12700" },
+      { "label": "PDF", "url": "https://arxiv.org/pdf/2510.12700" },
+      { "label": "Code", "url": "https://github.com/gtri/neural-network-elements" },
+      { "label": "Demo", "url": "https://andrew-tawfeek.github.io/neural-network-elements/" }
+    ]
+  },
+  {
+    "title": "A\u00b9-Brouwer Degrees in Macaulay2",
+    "authors": "Nikita Borisov, Thomas Brazelton, Frenly Espino, Thomas Hagedorn, Zhaobo Han, Jordy Lopez Garcia, Joel Louwsma, Gabriel Ong, Andrew R. Tawfeek",
+    "venue": "Journal of Software for Algebra and Geometry, vol.\u00a014, 2024",
+    "year": 2024,
+    "url": "https://doi.org/10.2140/jsag.2024.14.175",
+    "links": [
+      { "label": "DOI", "url": "https://doi.org/10.2140/jsag.2024.14.175" }
+    ]
+  },
+  {
+    "title": "On Discrete Gradient Vector Fields and Laplacians of Simplicial Complexes",
+    "authors": "Ivan Contreras, Andrew R. Tawfeek",
+    "venue": "Annals of Combinatorics, 2023",
+    "year": 2023,
+    "url": "https://doi.org/10.1007/s00026-023-00655-1",
+    "links": [
+      { "label": "DOI", "url": "https://doi.org/10.1007/s00026-023-00655-1" },
+      { "label": "Code", "url": "https://github.com/andrew-tawfeek/discrete-gradients" }
+    ]
+  },
+  {
+    "title": "Quantum Jacobi Forms and Sums of Tails Identities",
+    "authors": "Amanda Folsom, Lizzie Pratt, Noah Solomon, Andrew R. Tawfeek",
+    "venue": "Research in Number Theory, 2022",
+    "year": 2022,
+    "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7",
+    "links": [
+      { "label": "DOI", "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7" }
+    ]
+  }
+]

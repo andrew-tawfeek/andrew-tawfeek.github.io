@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "relu-decision-boundaries",
+    "title": "Visualizing ReLU Network Decision Boundaries",
+    "date": "Coming 2026",
+    "datetime": "2026",
+    "description": "A deep dive into the geometry of ReLU neural networks: why activation patterns tile the input space into convex polytopes, how the dual graph captures network structure, and how to build an interactive browser-based visualizer using D3.js. Companion to the Neural Network Elements project and PMLR 2025 paper.",
+    "tags": ["Neural Networks", "Visualization", "JavaScript", "D3.js"],
+    "published": false
+  },
+  {
+    "slug": "intro-tropical-geometry",
+    "title": "An Introduction to Tropical Geometry",
+    "date": "Coming 2026",
+    "datetime": "2026",
+    "description": "Tropical geometry replaces ordinary arithmetic with the (min, +) semiring, turning algebraic varieties into piecewise-linear objects that are amenable to combinatorial analysis. This tutorial builds the theory from scratch — tropical polynomials, Newton polytopes, and the connection to Porteous' formula — with interactive visualizations powered by PyScript.",
+    "tags": ["Algebraic Geometry", "Tropical Geometry", "Mathematics"],
+    "published": false
+  },
+  {
+    "slug": "tda-financial-time-series",
+    "title": "Topological Data Analysis for Financial Time Series",
+    "date": "Coming 2026",
+    "datetime": "2026",
+    "description": "Persistent homology extracts robust topological features from noisy, high-dimensional data that classical statistics misses. This tutorial applies TDA to financial time series — computing Vietoris-Rips persistence diagrams on sliding windows of equity returns, and using the resulting features for regime detection and risk modeling. All examples are self-contained Python notebooks.",
+    "tags": ["TDA", "Quantitative Finance", "Python", "Persistent Homology"],
+    "published": false
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "nne",
+    "name": "Neural Network Elements",
+    "description": "An interactive web-based tool for analyzing the geometry of ReLU neural networks. Computes polyhedral decompositions of the input space, constructs dual graphs of activation regions, performs spectral analysis via Laplacian eigendecomposition, and visualizes decision boundaries — all in the browser, with no server required. Approximately 4,200 lines of code, released by the Georgia Tech Research Institute.",
+    "tech": ["JavaScript", "D3.js", "HTML/CSS", "Linear Algebra", "TDA"],
+    "links": [
+      { "type": "demo", "url": "https://andrew-tawfeek.github.io/neural-network-elements/", "label": "Live Demo" },
+      { "type": "github", "url": "https://github.com/gtri/neural-network-elements", "label": "Code" },
+      { "type": "paper", "url": "https://arxiv.org/abs/2510.12700", "label": "Paper" }
+    ],
+    "thumbIcon": "network"
+  },
+  {
+    "id": "knotai",
+    "name": "KnotAI",
+    "description": "A PyTorch feedforward neural network classifier for recognizing and classifying knots from their matrix (mosaic) representations. Built as part of the Washington eXperimental Mathematics Lab (WXML) project \"Teaching a Computer to Knot,\" this model encodes knot diagrams as structured matrices and trains a graph neural network to predict knot invariants and knot types.",
+    "tech": ["Python", "PyTorch", "NumPy", "Graph Neural Networks"],
+    "links": [
+      { "type": "github", "url": "https://github.com/andrew-tawfeek/KnotAI", "label": "Code" }
+    ],
+    "thumbIcon": "knot"
+  },
+  {
+    "id": "dg",
+    "name": "Discrete Gradients",
+    "description": "A SageMath library for computing discrete gradient vector fields on simplicial complexes via Morse theory. Implements algorithms for constructing and analyzing discrete Morse functions, computing Laplacian eigendecompositions, and extracting topological features. Released as companion code for the Annals of Combinatorics publication (2023).",
+    "tech": ["Python", "SageMath", "Discrete Morse Theory", "Algebraic Topology"],
+    "links": [
+      { "type": "github", "url": "https://github.com/andrew-tawfeek/discrete-gradients", "label": "Code" },
+      { "type": "paper", "url": "https://doi.org/10.1007/s00026-023-00655-1", "label": "Paper" }
+    ],
+    "thumbIcon": "simplex"
+  }
+]

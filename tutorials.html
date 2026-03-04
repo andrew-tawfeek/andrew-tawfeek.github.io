@@ -116,78 +116,7 @@
       </div>
 
       <!-- Tutorial listing -->
-      <div class="tutorials-list" role="list">
-
-        <!-- Tutorial 1: ReLU Decision Boundaries -->
-        <article class="tutorial-card" role="listitem" aria-labelledby="tut-relu-title">
-          <div class="tutorial-meta">
-            <time class="tutorial-date" datetime="2026">Coming 2026</time>
-            <div class="tutorial-tags" aria-label="Tags">
-              <span class="tutorial-tag">Neural Networks</span>
-              <span class="tutorial-tag">Visualization</span>
-              <span class="tutorial-tag">JavaScript</span>
-              <span class="tutorial-tag">D3.js</span>
-            </div>
-          </div>
-          <h2 class="tutorial-title" id="tut-relu-title">
-            Visualizing ReLU Network Decision Boundaries
-          </h2>
-          <p class="tutorial-desc">
-            A deep dive into the geometry of ReLU neural networks: why activation patterns
-            tile the input space into convex polytopes, how the dual graph captures network
-            structure, and how to build an interactive browser-based visualizer using D3.js.
-            Companion to the Neural Network Elements project and PMLR 2025 paper.
-          </p>
-          <span class="tutorial-coming-soon" aria-label="Not yet published">Coming soon</span>
-        </article>
-
-        <!-- Tutorial 2: Introduction to Tropical Geometry -->
-        <article class="tutorial-card" role="listitem" aria-labelledby="tut-tropical-title">
-          <div class="tutorial-meta">
-            <time class="tutorial-date" datetime="2026">Coming 2026</time>
-            <div class="tutorial-tags" aria-label="Tags">
-              <span class="tutorial-tag">Algebraic Geometry</span>
-              <span class="tutorial-tag">Tropical Geometry</span>
-              <span class="tutorial-tag">Mathematics</span>
-            </div>
-          </div>
-          <h2 class="tutorial-title" id="tut-tropical-title">
-            An Introduction to Tropical Geometry
-          </h2>
-          <p class="tutorial-desc">
-            Tropical geometry replaces ordinary arithmetic with the (min, +) semiring,
-            turning algebraic varieties into piecewise-linear objects that are amenable to
-            combinatorial analysis. This tutorial builds the theory from scratch — tropical
-            polynomials, Newton polytopes, and the connection to Porteous' formula — with
-            interactive visualizations powered by PyScript.
-          </p>
-          <span class="tutorial-coming-soon" aria-label="Not yet published">Coming soon</span>
-        </article>
-
-        <!-- Tutorial 3: TDA for Financial Time Series -->
-        <article class="tutorial-card" role="listitem" aria-labelledby="tut-tda-finance-title">
-          <div class="tutorial-meta">
-            <time class="tutorial-date" datetime="2026">Coming 2026</time>
-            <div class="tutorial-tags" aria-label="Tags">
-              <span class="tutorial-tag">TDA</span>
-              <span class="tutorial-tag">Quantitative Finance</span>
-              <span class="tutorial-tag">Python</span>
-              <span class="tutorial-tag">Persistent Homology</span>
-            </div>
-          </div>
-          <h2 class="tutorial-title" id="tut-tda-finance-title">
-            Topological Data Analysis for Financial Time Series
-          </h2>
-          <p class="tutorial-desc">
-            Persistent homology extracts robust topological features from noisy, high-dimensional
-            data that classical statistics misses. This tutorial applies TDA to financial time
-            series — computing Vietoris-Rips persistence diagrams on sliding windows of equity
-            returns, and using the resulting features for regime detection and risk modeling.
-            All examples are self-contained Python notebooks.
-          </p>
-          <span class="tutorial-coming-soon" aria-label="Not yet published">Coming soon</span>
-        </article>
-
+      <div class="tutorials-list" id="tutorials-container" role="list">
       </div><!-- /.tutorials-list -->
     </main>
 
@@ -200,5 +129,6 @@
   </div><!-- /.page-wrapper -->
 
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/content-loader.js" defer></script>
 </body>
 </html>
