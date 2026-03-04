@@ -28,10 +28,10 @@
       if (saved === DARK || saved === LIGHT) return saved;
 
       // Check system preference
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return LIGHT;
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return DARK;
       }
-      return DARK;
+      return LIGHT;
     }
 
     function applyTheme(theme) {
