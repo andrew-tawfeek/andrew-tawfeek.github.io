@@ -133,7 +133,6 @@ Interactive Python (runs in browser via PyScript):
 import math
 print(f"Pi is approximately {math.pi:.6f}")
 ```
-```
 
 ### Research Interests
 

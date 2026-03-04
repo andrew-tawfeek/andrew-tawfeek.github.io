@@ -25,5 +25,14 @@
     "description": "Persistent homology extracts robust topological features from noisy, high-dimensional data that classical statistics misses. This tutorial applies TDA to financial time series — computing Vietoris-Rips persistence diagrams on sliding windows of equity returns, and using the resulting features for regime detection and risk modeling. All examples are self-contained Python notebooks.",
     "tags": ["TDA", "Quantitative Finance", "Python", "Persistent Homology"],
     "published": false
+  },
+  {
+    "slug": "my-tutorial",
+    "title": "My Tutorial Title",
+    "date": "March 2026",
+    "datetime": "2026-03",
+    "description": "Short description.",
+    "tags": ["Topic1", "Topic2"],
+    "published": true
   }
 ]
