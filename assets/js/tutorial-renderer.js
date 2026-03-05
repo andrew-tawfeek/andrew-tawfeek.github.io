@@ -130,16 +130,66 @@
 
       // Load PyScript, wait for it to initialize, then inject code blocks.
       if (extracted.blocks.length > 0) {
+        // Map common import names to Pyodide package names
+        var PACKAGE_MAP = {
+          'numpy': 'numpy',
+          'np': 'numpy',
+          'matplotlib': 'matplotlib',
+          'plt': 'matplotlib',
+          'pandas': 'pandas',
+          'pd': 'pandas',
+          'scipy': 'scipy',
+          'sklearn': 'scikit-learn',
+          'sympy': 'sympy',
+          'networkx': 'networkx'
+        };
+
+        // For each block, detect needed packages and prepend
+        // pyodide_js.loadPackage() call to the code
+        function getBlockCode(block) {
+          var packages = {};
+          var importPattern = /(?:^|\n)\s*(?:import|from)\s+(\w+)/g;
+          var im;
+          while ((im = importPattern.exec(block.code)) !== null) {
+            var pkg = PACKAGE_MAP[im[1]];
+            if (pkg) packages[pkg] = true;
+          }
+          var pkgList = Object.keys(packages);
+          if (pkgList.length === 0) return block.code;
+          return 'import pyodide_js\nawait pyodide_js.loadPackage(' +
+            JSON.stringify(pkgList) + ')\n' + block.code;
+        }
+
+        // Inject blocks sequentially — wait for each to finish before
+        // injecting the next, so display() output targets correctly.
         function injectPyBlocks() {
-          extracted.blocks.forEach(function (block) {
+          var i = 0;
+          function injectNext() {
+            if (i >= extracted.blocks.length) return;
+            var block = extracted.blocks[i];
+            i++;
             var el = document.getElementById(block.id);
-            if (!el) return;
+            if (!el) { injectNext(); return; }
             var scriptEl = document.createElement('script');
             scriptEl.setAttribute('type', 'py');
             scriptEl.setAttribute('output', block.id + '-out');
-            scriptEl.textContent = block.code;
+            scriptEl.textContent = getBlockCode(block);
             el.appendChild(scriptEl);
-          });
+
+            // Poll for completion: PyScript sets a 'worker' or removes
+            // the script, or we can watch the output div for content.
+            var outEl = document.getElementById(block.id + '-out');
+            var pollCount = 0;
+            var pollDone = setInterval(function () {
+              pollCount++;
+              // Consider done if output appeared or timeout (30s)
+              if ((outEl && outEl.children.length > 0) || pollCount > 300) {
+                clearInterval(pollDone);
+                injectNext();
+              }
+            }, 100);
+          }
+          injectNext();
         }
 
         if (!document.querySelector('link[href*="pyscript"]')) {
@@ -157,7 +207,6 @@
         }
 
         // Poll for PyScript readiness, then inject blocks.
-        // customElements.get('py-script') is defined once core.js has executed.
         var attempts = 0;
         var poller = setInterval(function () {
           attempts++;
