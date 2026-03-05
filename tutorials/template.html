@@ -13,8 +13,9 @@
   <!-- KaTeX for math rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
 
-  <!-- highlight.js for code blocks -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" />
+  <!-- highlight.js for code blocks — theme toggled via media/data-theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" id="hljs-dark" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css" id="hljs-light" disabled />
 
   <!-- Prevent flash of wrong theme -->
   <script>
@@ -75,17 +76,19 @@
       overflow-x: auto;
       margin-bottom: 1.5rem;
       font-size: 0.9rem;
-      background: var(--bg-card, #1a1a2e);
+      background: var(--bg-elevated, #1e2433);
+      border: 1px solid var(--border-subtle, #2a3147);
     }
 
     .tutorial-prose code {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-family: var(--font-mono, 'JetBrains Mono'), 'Fira Code', monospace;
       font-size: 0.9em;
     }
 
     .tutorial-prose p code,
     .tutorial-prose li code {
-      background: var(--bg-card, #1a1a2e);
+      background: var(--bg-elevated, #1e2433);
+      color: var(--text-primary, #e8eaf0);
       padding: 0.15em 0.4em;
       border-radius: 0.25rem;
     }
@@ -120,25 +123,26 @@
 
     /* Interactive Python blocks */
     .interactive-block {
-      border: 1px solid var(--border, #333);
+      border: 1px solid var(--border-subtle, #2a3147);
       border-radius: 0.5rem;
       margin-bottom: 1.5rem;
       overflow: hidden;
     }
 
     .interactive-block .interactive-label {
-      background: var(--bg-card, #1a1a2e);
+      background: var(--bg-elevated, #1e2433);
       padding: 0.4rem 1rem;
       font-size: 0.8rem;
-      color: var(--text-secondary, #888);
-      border-bottom: 1px solid var(--border, #333);
+      color: var(--text-secondary, #9aa5be);
+      border-bottom: 1px solid var(--border-subtle, #2a3147);
     }
 
     .pyscript-output {
       padding: 1rem;
       min-height: 2rem;
-      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-family: var(--font-body, 'TeXGyrePagella'), 'Palatino Linotype', Palatino, Georgia, serif;
       font-size: 0.9rem;
+      color: var(--text-primary, #e8eaf0);
     }
 
     /* Hide the empty output div — PyScript renders into its own <script-py> element instead */
@@ -146,6 +150,30 @@
       display: none;
       padding: 0;
       min-height: 0;
+    }
+
+    .pyscript-loading {
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted, #5f6b85);
+      font-style: italic;
+    }
+
+    .pyscript-loading::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--border-medium, #374160);
+      border-top-color: var(--accent, #5b8fa8);
+      border-radius: 50%;
+      animation: pyscript-spin 0.8s linear infinite;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    @keyframes pyscript-spin {
+      to { transform: rotate(360deg); }
     }
 
     .tutorial-loading {

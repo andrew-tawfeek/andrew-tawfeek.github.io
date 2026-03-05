@@ -58,3 +58,24 @@ ax.set_ylabel("Price")
 display(fig)
 plt.close(fig)
 ```
+
+one more, interactive now
+
+```python {interactive}
+from pyscript import display
+from js import document, Plotly as PlotlyJS, Object
+from pyodide.ffi import to_js
+import plotly.graph_objects as go
+
+fig = go.Figure(data=go.Scatter(x=[1,2,3], y=[1,4,2]))
+plot_div = document.createElement('div')
+display(plot_div)
+fig_dict = fig.to_dict()
+PlotlyJS.newPlot(
+plot_div,
+to_js(fig_dict['data'], dict_converter=Object.fromEntries),
+to_js(fig_dict['layout'], dict_converter=Object.fromEntries),
+to_js({"displayModeBar": False}, dict_converter=Object.fromEntries)
+)
+
+```

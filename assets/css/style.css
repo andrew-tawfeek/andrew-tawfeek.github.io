@@ -1,13 +1,14 @@
 /* ==========================================================================
    Andrew R. Tawfeek — Personal Website Stylesheet
    Custom CSS only — no frameworks
-   Font: Inter (body), JetBrains Mono (code/badges)
+   Font: TeX Gyre Pagella (body), JetBrains Mono (code/badges)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    Google Fonts Import
    -------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.cdnfonts.com/css/tex-gyre-pagella');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* --------------------------------------------------------------------------
    CSS Custom Properties — Dark Mode (default)
@@ -51,7 +52,7 @@
   --sidebar-width:  300px;
 
   /* Typography */
-  --font-body:      'Inter', system-ui, -apple-system, sans-serif;
+  --font-body:      'TeXGyrePagella', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
   --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
 
   /* Spacing */
@@ -105,7 +106,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 body {
