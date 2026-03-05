@@ -233,7 +233,10 @@
           var sentinel = '\nfrom js import document as _doc\n' +
             '_doc.getElementById("' + block.id + '").setAttribute("data-done", "true")\n';
 
-          return preamble + block.code + sentinel;
+          // Inject block ID variable so user code can find its container
+          var blockVar = '__block_id__ = "' + block.id + '"\n';
+
+          return blockVar + preamble + block.code + sentinel;
         }
 
         // Inject blocks sequentially — wait for each to finish before

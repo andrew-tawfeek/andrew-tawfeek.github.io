@@ -24,6 +24,17 @@ This below should run:
 ```python {interactive}
 from pyscript import display
 import math
+
+for i in range(10):
+    display(f"Pi is approximately {math.pi:.{i}f}")
+```
+
+and this:
+
+
+```python {interactive}
+from pyscript import display
+import math
 display(f"Pi is approximately {math.pi:.6f}")
 display("Hello")
 display(f"2**2 == 1? {2**2 == 1}")
@@ -62,20 +73,21 @@ plt.close(fig)
 one more, interactive now
 
 ```python {interactive}
-from pyscript import display
 from js import document, Plotly as PlotlyJS, Object
 from pyodide.ffi import to_js
 import plotly.graph_objects as go
 
 fig = go.Figure(data=go.Scatter(x=[1,2,3], y=[1,4,2]))
+
+# Append plot div to this block's container (uses auto-injected __block_id__)
 plot_div = document.createElement('div')
-display(plot_div)
+document.getElementById(__block_id__).appendChild(plot_div)
+
 fig_dict = fig.to_dict()
 PlotlyJS.newPlot(
-plot_div,
-to_js(fig_dict['data'], dict_converter=Object.fromEntries),
-to_js(fig_dict['layout'], dict_converter=Object.fromEntries),
-to_js({"displayModeBar": False}, dict_converter=Object.fromEntries)
+    plot_div,
+    to_js(fig_dict['data'], dict_converter=Object.fromEntries),
+    to_js(fig_dict['layout'], dict_converter=Object.fromEntries),
+    to_js({"displayModeBar": False}, dict_converter=Object.fromEntries)
 )
-
 ```
