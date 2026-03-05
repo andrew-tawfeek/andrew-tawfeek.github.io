@@ -141,6 +141,13 @@
       font-size: 0.9rem;
     }
 
+    /* Hide the empty output div — PyScript renders into its own <script-py> element instead */
+    .pyscript-output:empty {
+      display: none;
+      padding: 0;
+      min-height: 0;
+    }
+
     .tutorial-loading {
       text-align: center;
       padding: 4rem 1rem;

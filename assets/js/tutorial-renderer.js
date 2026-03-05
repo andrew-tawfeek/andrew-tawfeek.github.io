@@ -156,7 +156,7 @@
           }
           var pkgList = Object.keys(packages);
           if (pkgList.length === 0) return block.code;
-          return 'import pyodide_js\nawait pyodide_js.loadPackage(' +
+          return 'import pyodide_js\n_ = await pyodide_js.loadPackage(' +
             JSON.stringify(pkgList) + ')\n' + block.code;
         }
 
@@ -173,7 +173,7 @@
             var scriptEl = document.createElement('script');
             scriptEl.setAttribute('type', 'py');
             scriptEl.setAttribute('output', block.id + '-out');
-            scriptEl.textContent = getBlockCode(block);
+            scriptEl.textContent = getBlockCode(block).trim();
             el.appendChild(scriptEl);
 
             // Poll for completion: PyScript sets a 'worker' or removes

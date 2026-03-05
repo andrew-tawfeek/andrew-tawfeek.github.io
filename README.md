@@ -11,6 +11,7 @@ Personal website for Andrew R. Tawfeek — mathematician and ML researcher.
 ├── tutorials.html          # Tutorial listing
 ├── cv.html                 # CV / resume
 ├── content/                # Data files (edit these to update content)
+│   ├── about.json          # Bio paragraphs (array of HTML strings)
 │   ├── news.json           # News items
 │   ├── publications.json   # Publication list
 │   ├── projects.json       # Project cards
@@ -30,6 +31,18 @@ Personal website for Andrew R. Tawfeek — mathematician and ML researcher.
 ```
 
 ## Adding Content
+
+### About / Bio
+
+Edit `content/about.json` — an array of HTML paragraph strings:
+
+```json
+[
+  "First paragraph with <a href=\"...\">links</a> supported.",
+  "Second paragraph.",
+  "Third paragraph."
+]
+```
 
 ### News
 
@@ -130,9 +143,32 @@ def hello():
 Interactive Python (runs in browser via PyScript):
 
 ```python {interactive}
+from pyscript import display
 import math
-print(f"Pi is approximately {math.pi:.6f}")
+display(f"Pi is approximately {math.pi:.6f}")
 ```
+
+Matplotlib plots in interactive blocks:
+
+```python {interactive}
+from pyscript import display
+from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('agg')
+import numpy as np
+
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 4, 9])
+display(fig)
+plt.close(fig)
+```
+```
+
+**Important PyScript notes:**
+- Use `from pyscript import display` and call `display()` for output — `print()` goes to browser console only
+- For matplotlib, use the `agg` backend and `display(fig)` instead of `plt.show()`
+- External packages (numpy, matplotlib, pandas, scipy, etc.) are auto-detected from imports and installed via `pyodide_js.loadPackage()` — no manual config needed
+- Multiple interactive blocks execute sequentially (each waits for the previous to finish)
 
 ### Research Interests
 
