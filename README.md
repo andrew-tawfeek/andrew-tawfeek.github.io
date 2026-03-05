@@ -21,11 +21,11 @@ Personal website for Andrew R. Tawfeek — mathematician and ML researcher.
 │   ├── template.html       # Shell page for rendering any tutorial
 │   └── *.md                # Individual tutorial markdown files
 ├── assets/
-│   ├── css/style.css       # All styles
+│   ├── css/style.css       # All styles (TeX Gyre Pagella font, light/dark theme)
 │   ├── js/
 │   │   ├── main.js         # Theme toggle, nav, smooth scroll
 │   │   ├── content-loader.js   # Fetches JSON → renders into pages
-│   │   └── tutorial-renderer.js # Renders markdown tutorials
+│   │   └── tutorial-renderer.js # Renders markdown tutorials (KaTeX, hljs, PyScript)
 │   └── img/                # Images
 └── CLAUDE.md               # AI assistant instructions
 ```
@@ -118,7 +118,7 @@ Thumb icons: `network`, `knot`, `simplex`.
 
 2. Create `tutorials/my-tutorial.md` with front matter:
 
-```markdown
+````markdown
 ---
 title: My Tutorial Title
 date: March 2026
@@ -139,36 +139,7 @@ Code blocks with syntax highlighting:
 def hello():
     print("Hello, world!")
 ```
-
-Interactive Python (runs in browser via PyScript):
-
-```python {interactive}
-from pyscript import display
-import math
-display(f"Pi is approximately {math.pi:.6f}")
-```
-
-Matplotlib plots in interactive blocks:
-
-```python {interactive}
-from pyscript import display
-from matplotlib import pyplot as plt
-import matplotlib
-matplotlib.use('agg')
-import numpy as np
-
-fig, ax = plt.subplots()
-ax.plot([1, 2, 3], [1, 4, 9])
-display(fig)
-plt.close(fig)
-```
-```
-
-**Important PyScript notes:**
-- Use `from pyscript import display` and call `display()` for output — `print()` goes to browser console only
-- For matplotlib, use the `agg` backend and `display(fig)` instead of `plt.show()`
-- External packages (numpy, matplotlib, pandas, scipy, etc.) are auto-detected from imports and installed via `pyodide_js.loadPackage()` — no manual config needed
-- Multiple interactive blocks execute sequentially (each waits for the previous to finish)
+````
 
 ### Research Interests
 
@@ -178,6 +149,92 @@ Edit `content/interests.json` — a flat array of strings:
 ["Tropical Geometry", "Machine Learning", "TDA"]
 ```
 
+## Writing Interactive Python (PyScript)
+
+Interactive Python blocks run in the browser via [PyScript](https://pyscript.net/) / [Pyodide](https://pyodide.org/). They are loaded on demand only when a tutorial contains them.
+
+### Basics
+
+Use ` ```python {interactive} ` fencing. Always use `display()` for output — `print()` goes to the browser console only.
+
+```python {interactive}
+from pyscript import display
+import math
+display(f"Pi is approximately {math.pi:.6f}")
+```
+
+### Package installation
+
+External packages are **auto-detected** from `import` statements:
+
+- **Pyodide built-ins** (numpy, matplotlib, pandas, scipy, sympy, networkx, scikit-learn) are installed via `pyodide_js.loadPackage()` — fast, cached by the browser after first load.
+- **PyPI packages** (plotly, etc.) are installed via `micropip.install()` — works for any pure-Python package on PyPI.
+
+No manual configuration needed. First load downloads packages; subsequent visits use the browser cache.
+
+### Static plots (matplotlib)
+
+Use the `agg` backend and `display(fig)` — never `plt.show()`.
+
+```python {interactive}
+from pyscript import display
+import matplotlib
+matplotlib.use('agg')
+from matplotlib import pyplot as plt
+import numpy as np
+
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 4, 9])
+display(fig)
+plt.close(fig)
+```
+
+### Interactive plots (Plotly)
+
+For pan/zoom/hover interactivity, use Plotly. The renderer auto-loads the Plotly.js CDN when it detects plotly imports. Render plots by appending a div to the block container and calling `Plotly.newPlot()`:
+
+```python {interactive}
+from js import document, Plotly as PlotlyJS, Object
+from pyodide.ffi import to_js
+import plotly.graph_objects as go
+
+fig = go.Figure(data=go.Scatter(x=[1, 2, 3], y=[1, 4, 2]))
+
+# __block_id__ is auto-injected by the renderer — always available
+plot_div = document.createElement('div')
+document.getElementById(__block_id__).appendChild(plot_div)
+
+fig_dict = fig.to_dict()
+PlotlyJS.newPlot(
+    plot_div,
+    to_js(fig_dict['data'], dict_converter=Object.fromEntries),
+    to_js(fig_dict['layout'], dict_converter=Object.fromEntries),
+    to_js({"displayModeBar": False}, dict_converter=Object.fromEntries)
+)
+```
+
+**Key points:**
+- Do NOT use `display(fig.to_html(...))` — this dumps the entire plotly.js library as raw text.
+- Use `document.getElementById(__block_id__).appendChild(div)` to inject DOM elements into the block.
+- Set `displayModeBar: False` to hide the toolbar, or `True` to show it.
+- `__block_id__` is a Python variable automatically set by the renderer for each interactive block.
+
+### Execution model
+
+- Multiple interactive blocks execute **sequentially** (each waits for the previous to finish).
+- A loading spinner shows "Loading Python environment..." → "Installing packages & running..." while blocks execute.
+- Each block has access to `__block_id__` (its container div ID) for direct DOM manipulation.
+
+### Choosing between matplotlib and Plotly
+
+| Feature | matplotlib (`agg`) | Plotly |
+|---|---|---|
+| Output type | Static image | Interactive HTML |
+| Pan/zoom | No | Yes |
+| Hover tooltips | No | Yes |
+| Package size | ~8 MB (cached) | ~3 MB via micropip + CDN JS |
+| Best for | Publication-quality static figures | Exploratory/interactive data viz |
+
 ## Local Development
 
 ```bash
@@ -186,14 +243,17 @@ python -m http.server 8080
 # Open http://localhost:8080
 ```
 
-Content is loaded via `fetch()`, so a local server is required (file:// won't work for JSON loading).
+Use port 8080 (port 8000 may conflict with other local services). Content is loaded via `fetch()`, so a local server is required (file:// won't work).
 
 ## Tech Stack
 
 - Pure HTML/CSS/JS — no build tools, no frameworks
+- **Font**: TeX Gyre Pagella (Palatino) for body, JetBrains Mono for code
+- **Theme**: Light mode default, dark/light toggle
 - Client-side JSON fetching for content
 - [marked.js](https://marked.js.org/) for markdown rendering
-- [KaTeX](https://katex.org/) for math typesetting
-- [highlight.js](https://highlightjs.org/) for syntax highlighting
+- [KaTeX](https://katex.org/) for math typesetting (Euler-style math)
+- [highlight.js](https://highlightjs.org/) for syntax highlighting (github / github-dark themes, toggled with site theme)
 - [PyScript](https://pyscript.net/) for interactive Python (loaded on demand)
+- [Plotly.js](https://plotly.com/javascript/) for interactive plots (CDN, loaded on demand)
 - Hosted on GitHub Pages
