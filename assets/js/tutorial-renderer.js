@@ -2,16 +2,13 @@
  * tutorial-renderer.js — Renders markdown tutorials with math and interactive Python
  *
  * Pipeline:
- * 1. Read ?slug= from URL
- * 2. Fetch tutorials/{slug}.md
- * 3. Parse YAML front matter (title, date, tags)
- * 4. Detect ```python {interactive} blocks → prepare PyScript loading
- * 5. Replace interactive blocks with placeholder divs
- * 6. marked.parse() on remaining markdown
- * 7. Re-insert PyScript <script type="py"> blocks at placeholders
- * 8. Inject into #tutorial-content
- * 9. Run KaTeX renderMathInElement()
- * 10. Run hljs.highlightElement() on non-interactive code blocks
+ * 1. Read ?slug= from URL, fetch tutorials/{slug}.md
+ * 2. Parse YAML front matter
+ * 3. Extract ```python {interactive} blocks, replace with text placeholders
+ * 4. marked.parse() the remaining markdown
+ * 5. Set innerHTML, then inject PyScript elements at placeholder locations
+ * 6. Load PyScript core.js (which discovers <script type="py"> via MutationObserver)
+ * 7. Run KaTeX + highlight.js
  */
 
 (function () {
@@ -19,10 +16,6 @@
 
   var container = document.getElementById('tutorial-content');
   if (!container) return;
-
-  // =========================================================================
-  // Get slug from URL
-  // =========================================================================
 
   var params = new URLSearchParams(window.location.search);
   var slug = params.get('slug');
@@ -34,7 +27,7 @@
   }
 
   // =========================================================================
-  // YAML front matter parser (simple key: value)
+  // YAML front matter parser
   // =========================================================================
 
   function parseFrontMatter(text) {
@@ -53,13 +46,11 @@
           var key = line.substring(0, colonIdx).trim();
           var val = line.substring(colonIdx + 1).trim();
 
-          // Handle arrays: [item1, item2]
           if (val.charAt(0) === '[' && val.charAt(val.length - 1) === ']') {
             val = val.substring(1, val.length - 1).split(',').map(function (s) {
               return s.trim().replace(/^["']|["']$/g, '');
             });
           } else {
-            // Strip quotes
             val = val.replace(/^["']|["']$/g, '');
           }
           meta[key] = val;
@@ -71,7 +62,7 @@
   }
 
   // =========================================================================
-  // Interactive block extraction
+  // Interactive block extraction — replace with simple div placeholders
   // =========================================================================
 
   function extractInteractiveBlocks(markdown) {
@@ -80,12 +71,14 @@
     var pattern = /```python\s*\{interactive\}\s*\n([\s\S]*?)```/g;
 
     var processed = markdown.replace(pattern, function (match, code) {
-      var id = '__interactive_' + counter + '__';
+      var id = 'pyscript-block-' + counter;
       blocks.push({ id: id, code: code.trim() });
       counter++;
-      return '<div id="' + id + '" class="interactive-block">' +
+      // Return a simple HTML block that marked will pass through untouched
+      return '\n\n<div id="' + id + '" class="interactive-block">' +
         '<div class="interactive-label">Interactive Python (PyScript)</div>' +
-        '<div class="pyscript-output"></div></div>';
+        '<div id="' + id + '-out" class="pyscript-output"></div>' +
+        '</div>\n\n';
     });
 
     return { markdown: processed, blocks: blocks };
@@ -103,24 +96,18 @@
     .then(function (text) {
       var parsed = parseFrontMatter(text);
       var meta = parsed.meta;
-
-      // Extract interactive blocks before marked parses them
       var extracted = extractInteractiveBlocks(parsed.body);
-      var hasInteractive = extracted.blocks.length > 0;
 
       // Configure marked
       if (window.marked) {
-        marked.setOptions({
-          gfm: true,
-          breaks: false
-        });
+        marked.setOptions({ gfm: true, breaks: false });
       }
 
       // Build header
       var headerHTML = '';
       if (meta.title) {
         headerHTML += '<h1>' + meta.title + '</h1>';
-        document.title = meta.title + ' — Andrew R. Tawfeek';
+        document.title = meta.title + ' \u2014 Andrew R. Tawfeek';
       }
 
       var metaLine = '';
@@ -137,33 +124,50 @@
         headerHTML += '</div>';
       }
 
-      // Render markdown
+      // Render markdown to HTML
       var bodyHTML = window.marked ? marked.parse(extracted.markdown) : extracted.markdown;
       container.innerHTML = headerHTML + bodyHTML;
 
-      // Insert PyScript blocks
-      if (hasInteractive) {
-        extracted.blocks.forEach(function (block) {
-          var el = document.getElementById(block.id);
-          if (!el) return;
-          var outputDiv = el.querySelector('.pyscript-output');
-          if (outputDiv) {
-            var script = document.createElement('script');
-            script.type = 'py';
-            script.setAttribute('output', block.id + '-out');
-            outputDiv.id = block.id + '-out';
-            script.textContent = block.code;
-            el.appendChild(script);
-          }
-        });
-
-        // Load PyScript dynamically
-        if (!document.querySelector('script[src*="pyscript"]')) {
-          var pyScript = document.createElement('script');
-          pyScript.src = 'https://pyscript.net/releases/2024.1.1/core.js';
-          pyScript.type = 'module';
-          document.head.appendChild(pyScript);
+      // Load PyScript, wait for it to initialize, then inject code blocks.
+      if (extracted.blocks.length > 0) {
+        function injectPyBlocks() {
+          extracted.blocks.forEach(function (block) {
+            var el = document.getElementById(block.id);
+            if (!el) return;
+            var scriptEl = document.createElement('script');
+            scriptEl.setAttribute('type', 'py');
+            scriptEl.setAttribute('output', block.id + '-out');
+            scriptEl.textContent = block.code;
+            el.appendChild(scriptEl);
+          });
         }
+
+        if (!document.querySelector('link[href*="pyscript"]')) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://pyscript.net/releases/2024.11.1/core.css';
+          document.head.appendChild(link);
+        }
+
+        if (!document.querySelector('script[src*="pyscript"]')) {
+          var ps = document.createElement('script');
+          ps.setAttribute('type', 'module');
+          ps.setAttribute('src', 'https://pyscript.net/releases/2024.11.1/core.js');
+          document.head.appendChild(ps);
+        }
+
+        // Poll for PyScript readiness, then inject blocks.
+        // customElements.get('py-script') is defined once core.js has executed.
+        var attempts = 0;
+        var poller = setInterval(function () {
+          attempts++;
+          if (customElements.get('py-script') || attempts > 100) {
+            clearInterval(poller);
+            if (customElements.get('py-script')) {
+              injectPyBlocks();
+            }
+          }
+        }, 100);
       }
 
       // KaTeX: render math
@@ -182,7 +186,6 @@
       // highlight.js: syntax-highlight non-interactive code blocks
       if (window.hljs) {
         container.querySelectorAll('pre code').forEach(function (block) {
-          // Skip code inside interactive blocks
           if (!block.closest('.interactive-block')) {
             hljs.highlightElement(block);
           }

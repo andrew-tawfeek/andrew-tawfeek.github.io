@@ -54,6 +54,14 @@
   // Renderers
   // =========================================================================
 
+  function renderAbout(container) {
+    return fetchJSON('content/about.json').then(function (paragraphs) {
+      container.innerHTML = paragraphs.map(function (p) {
+        return '<p>' + p + '</p>';
+      }).join('');
+    });
+  }
+
   function renderNews(container) {
     return fetchJSON('content/news.json').then(function (items) {
       container.innerHTML = items.map(function (item) {
@@ -184,6 +192,9 @@
 
   function init() {
     var tasks = [];
+
+    var aboutEl = document.getElementById('about-container');
+    if (aboutEl) tasks.push(renderAbout(aboutEl));
 
     var newsEl = document.getElementById('news-container');
     if (newsEl) tasks.push(renderNews(newsEl));
