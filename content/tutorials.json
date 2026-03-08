@@ -9,12 +9,12 @@
     "published": false
   },
   {
-    "slug": "intro-tropical-geometry",
-    "title": "An Introduction to Tropical Geometry",
+    "slug": "knotai-tensorflow",
+    "title": "KnotAI: Classifying knots with ML",
     "date": "Coming 2026",
     "datetime": "2026",
-    "description": "Tropical geometry replaces ordinary arithmetic with the (min, +) semiring, turning algebraic varieties into piecewise-linear objects that are amenable to combinatorial analysis. This tutorial builds the theory from scratch — tropical polynomials, Newton polytopes, and the connection to Porteous' formula — with interactive visualizations powered by PyScript.",
-    "tags": ["Algebraic Geometry", "Tropical Geometry", "Mathematics"],
+    "description": "We build a TensorFlow ML classifier for recognizing and classifying whether or not something is the unknot from their matrix (mosaic) representations. Will we be able to go further?",
+    "tags": ["Machine Learning", "Topology", "TensorFlow"],
     "published": false
   },
   {
