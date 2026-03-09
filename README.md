@@ -20,14 +20,13 @@ Personal website for Andrew R. Tawfeek — mathematician and ML researcher.
 ├── tutorials/              # Tutorial content
 │   ├── template.html       # Shell page for rendering any tutorial
 │   └── *.md                # Individual tutorial markdown files
-├── assets/
-│   ├── css/style.css       # All styles (TeX Gyre Pagella font, light/dark theme)
-│   ├── js/
-│   │   ├── main.js         # Theme toggle, nav, smooth scroll
-│   │   ├── content-loader.js   # Fetches JSON → renders into pages
-│   │   └── tutorial-renderer.js # Renders markdown tutorials (KaTeX, hljs, PyScript)
-│   └── img/                # Images
-└── CLAUDE.md               # AI assistant instructions
+└── assets/
+    ├── css/style.css       # All styles (TeX Gyre Pagella font, light/dark theme)
+    ├── js/
+    │   ├── main.js         # Theme toggle, nav, smooth scroll
+    │   ├── content-loader.js   # Fetches JSON → renders into pages
+    │   └── tutorial-renderer.js # Renders markdown tutorials (KaTeX, hljs, PyScript)
+    └── img/                # Images
 ```
 
 ## Adding Content
