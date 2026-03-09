@@ -19,7 +19,8 @@
     thumb: {
       network: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><circle cx="12" cy="12" r="2.5"/><line x1="7" y1="5" x2="17" y2="5"/><line x1="7" y1="19" x2="17" y2="19"/><line x1="5" y1="7" x2="5" y2="17"/><line x1="19" y1="7" x2="19" y2="17"/><line x1="7" y1="7" x2="10" y2="10"/><line x1="17" y1="7" x2="14" y2="10"/><line x1="7" y1="17" x2="10" y2="14"/><line x1="17" y1="17" x2="14" y2="14"/></svg>',
       knot: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9z"/><path d="M12 8c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/><line x1="15.5" y1="8.5" x2="8.5" y2="15.5"/></svg>',
-      simplex: '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,3 21,18 3,18"/><line x1="12" y1="3" x2="12" y2="18"/><line x1="7.5" y1="10.5" x2="16.5" y2="10.5"/><circle cx="12" cy="3" r="1.5"/><circle cx="21" cy="18" r="1.5"/><circle cx="3" cy="18" r="1.5"/></svg>'
+      simplex: '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,3 21,18 3,18"/><line x1="12" y1="3" x2="12" y2="18"/><line x1="7.5" y1="10.5" x2="16.5" y2="10.5"/><circle cx="12" cy="3" r="1.5"/><circle cx="21" cy="18" r="1.5"/><circle cx="3" cy="18" r="1.5"/></svg>',
+      algebra: '<svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="17" text-anchor="middle" font-size="14" font-family="serif" font-style="italic" fill="currentColor">A¹</text><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
     }
   };
 

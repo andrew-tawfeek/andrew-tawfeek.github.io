@@ -34,5 +34,18 @@
     ],
     "thumbIcon": "simplex",
     "visible": true
+  },
+  {
+    "id": "a1brouwer",
+    "name": "A¹-Brouwer Degrees in Macaulay2",
+    "description": "An official Macaulay2 package for computing A¹-Brouwer degrees, local and global Grothendieck–Witt invariants, and related enumerative signatures over arbitrary fields. Developed collaboratively and published in the Journal of Software for Algebra and Geometry (2024). The package is distributed with Macaulay2 as part of its standard library.",
+    "tech": ["Macaulay2", "A¹-Homotopy Theory", "Algebraic Geometry", "Enumerative Geometry"],
+    "links": [
+      { "type": "package", "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html", "label": "Package" },
+      { "type": "github", "url": "https://github.com/Macaulay2/M2/tree/stable/M2/Macaulay2/packages/A1BrouwerDegrees", "label": "Code" },
+      { "type": "paper", "url": "https://doi.org/10.2140/jsag.2024.14.175", "label": "Paper" }
+    ],
+    "thumbIcon": "algebra",
+    "visible": true
   }
 ]

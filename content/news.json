@@ -10,6 +10,11 @@
     "text": "Presenting <em>Taming Wild Knots with Recursive Mosaics</em> at the <a href=\"https://www.ams.org/meetings/sectional/sectional.html\" target=\"_blank\" rel=\"noopener noreferrer\">AMS Western Sectional Meeting</a>, Boise State University."
   },
   {
+    "date": "Feb 2026",
+    "datetime": "2026-02",
+    "text": "Awarded an <a href=\"https://www.ams.org/grants-awards/travel-grants/\" target=\"_blank\" rel=\"noopener noreferrer\">AMS Sectional Travel Grant</a> for the Spring 2026 Western Sectional Meeting."
+  },
+  {
     "date": "Jan 2026",
     "datetime": "2026-01",
     "text": "Talk at the <a href=\"https://jointmathematicsmeetings.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Joint Mathematics Meetings</a>, Washington DC — AMS Special Session on Knots, Links, Geometry, and Related 3-Manifolds."
@@ -20,8 +25,8 @@
     "text": "Invited talk at Topology, Algebra, and Geometry in Data Science, UC San Diego."
   },
   {
-    "date": "2025",
-    "datetime": "2025",
+    "date": "Nov 2025",
+    "datetime": "2025-11",
     "text": "Paper <em>Topological Signatures of ReLU Neural Network Activation Patterns</em> accepted to the <a href=\"https://proceedings.mlr.press/\" target=\"_blank\" rel=\"noopener noreferrer\">Proceedings of Machine Learning Research</a>."
   },
   {
@@ -30,8 +35,13 @@
     "text": "Joined the Georgia Tech Research Institute as a Research Scientist."
   },
   {
-    "date": "2024",
-    "datetime": "2024",
+    "date": "Nov 2024",
+    "datetime": "2024-11",
+    "text": "Appointed reviewer for <a href=\"https://zbmath.org/\" target=\"_blank\" rel=\"noopener noreferrer\">zbMATH Open</a>."
+  },
+  {
+    "date": "July 2024",
+    "datetime": "2024-07",
     "text": "Published <a href=\"https://doi.org/10.2140/jsag.2024.14.175\" target=\"_blank\" rel=\"noopener noreferrer\"><em>A\u00b9-Brouwer Degrees in Macaulay2</em></a> in the Journal of Software for Algebra and Geometry."
   }
 ]

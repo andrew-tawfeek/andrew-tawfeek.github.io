@@ -43,8 +43,10 @@
     "year": 2024,
     "url": "https://doi.org/10.2140/jsag.2024.14.175",
     "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2312.00106" },
       { "label": "DOI", "url": "https://doi.org/10.2140/jsag.2024.14.175" },
-      { "label": "Code", "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html" }
+      { "label": "Package", "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html" },
+      { "label": "Code", "url": "https://github.com/Macaulay2/M2/tree/stable/M2/Macaulay2/packages/A1BrouwerDegrees" }
     ]
   },
   {
@@ -54,6 +56,7 @@
     "year": 2023,
     "url": "https://doi.org/10.1007/s00026-023-00655-1",
     "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2105.05388" },
       { "label": "DOI", "url": "https://doi.org/10.1007/s00026-023-00655-1" },
       { "label": "Code", "url": "https://github.com/andrew-tawfeek/discrete-gradients" }
     ]
