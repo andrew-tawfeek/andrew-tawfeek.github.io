@@ -1,6 +1,6 @@
 [
   {
-    "title": "Taming Wild Knots with Recursive Mosaics",
+    "title": "Taming Wild Knots with Mosaics",
     "authors": "Mary Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
     "venue": "Manuscript in preparation, 2025\u20132026",
     "year": 2026,
@@ -14,8 +14,8 @@
     "venue": "Preprint, arXiv:2411.10578",
     "year": 2024,
     "url": "https://arxiv.org/abs/2411.10578",
-    "status": "Under revision",
-    "statusClass": "under-revision",
+    "status": "Submitted",
+    "statusClass": "submitted",
     "links": [
       { "label": "arXiv", "url": "https://arxiv.org/abs/2411.10578" },
       { "label": "PDF", "url": "https://arxiv.org/pdf/2411.10578" }
@@ -43,7 +43,8 @@
     "year": 2024,
     "url": "https://doi.org/10.2140/jsag.2024.14.175",
     "links": [
-      { "label": "DOI", "url": "https://doi.org/10.2140/jsag.2024.14.175" }
+      { "label": "DOI", "url": "https://doi.org/10.2140/jsag.2024.14.175" },
+      { "label": "Code", "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html" }
     ]
   },
   {

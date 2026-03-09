@@ -759,6 +759,12 @@ code, .mono {
   border: 1px solid rgba(180, 140, 70, 0.25);
 }
 
+.pub-status.submitted {
+  background: rgba(100, 140, 200, 0.12);
+  color: #7a9ec7;
+  border: 1px solid rgba(100, 140, 200, 0.25);
+}
+
 .pub-status.accepted {
   background: rgba(70, 160, 110, 0.12);
   color: #5aab7d;
@@ -767,6 +773,10 @@ code, .mono {
 
 [data-theme="light"] .pub-status.accepted {
   color: #2e7d5a;
+}
+
+[data-theme="light"] .pub-status.submitted {
+  color: #3a6a9e;
 }
 
 [data-theme="light"] .pub-status.under-revision {
