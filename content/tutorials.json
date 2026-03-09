@@ -37,6 +37,6 @@
     "description": "Short description.",
     "tags": ["Topic1", "Topic2"],
     "published": true,
-    "visible": true
+    "visible": false
   }
 ]
