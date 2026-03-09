@@ -66,5 +66,16 @@
     "links": [
       { "label": "DOI", "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7" }
     ]
+  },
+  {
+    "title": "An Introduction to Geodesics: The Shortest Distance Between Two Points",
+    "authors": "Andrew R. Tawfeek",
+    "venue": "Expository paper (written 2018), arXiv:2007.02864, 2020",
+    "year": 2020,
+    "url": "https://arxiv.org/abs/2007.02864",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2007.02864" },
+      { "label": "PDF", "url": "https://arxiv.org/pdf/2007.02864" }
+    ]
   }
 ]

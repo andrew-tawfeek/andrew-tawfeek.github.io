@@ -197,6 +197,9 @@ code, .mono {
 
 /* Site wordmark / logo */
 .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -208,6 +211,20 @@ code, .mono {
 }
 
 .nav-brand:hover { color: var(--accent); }
+
+/* Animated logo next to name */
+.nav-logo {
+  height: 35px;
+  width: auto;
+  vertical-align: middle;
+  background: transparent;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .nav-logo {
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
 
 /* Spacer pushes links right */
 .nav-spacer { flex: 1; }
@@ -299,6 +316,12 @@ code, .mono {
   width: 18px;
   height: 18px;
   fill: currentColor;
+}
+.theme-toggle .icon-sun {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 /* Icon visibility: show sun in dark mode, moon in light */
