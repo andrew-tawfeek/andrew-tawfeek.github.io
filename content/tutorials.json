@@ -6,7 +6,8 @@
     "datetime": "2026",
     "description": "A deep dive into the geometry of ReLU neural networks: why activation patterns tile the input space into convex polytopes, how the dual graph captures network structure, and how to build an interactive browser-based visualizer using D3.js. Companion to the Neural Network Elements project and PMLR 2025 paper.",
     "tags": ["Neural Networks", "Visualization", "JavaScript", "D3.js"],
-    "published": false
+    "published": false,
+    "visible": true
   },
   {
     "slug": "knotai-tensorflow",
@@ -15,7 +16,8 @@
     "datetime": "2026",
     "description": "We build a TensorFlow ML classifier for recognizing and classifying whether or not something is the unknot from their matrix (mosaic) representations. Will we be able to go further?",
     "tags": ["Machine Learning", "Topology", "TensorFlow"],
-    "published": false
+    "published": false,
+    "visible": true
   },
   {
     "slug": "tda-financial-time-series",
@@ -24,7 +26,8 @@
     "datetime": "2026",
     "description": "Persistent homology extracts robust topological features from noisy, high-dimensional data that classical statistics misses. This tutorial applies TDA to financial time series — computing Vietoris-Rips persistence diagrams on sliding windows of equity returns, and using the resulting features for regime detection and risk modeling. All examples are self-contained Python notebooks.",
     "tags": ["TDA", "Quantitative Finance", "Python", "Persistent Homology"],
-    "published": false
+    "published": false,
+    "visible": true
   },
   {
     "slug": "my-tutorial",
@@ -33,6 +36,7 @@
     "datetime": "2026-03",
     "description": "Short description.",
     "tags": ["Topic1", "Topic2"],
-    "published": true
+    "published": true,
+    "visible": true
   }
 ]

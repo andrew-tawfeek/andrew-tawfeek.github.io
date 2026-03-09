@@ -121,6 +121,7 @@
 
   function renderProjects(container) {
     return fetchJSON('content/projects.json').then(function (projects) {
+      projects = projects.filter(function (proj) { return proj.visible !== false; });
       container.innerHTML = projects.map(function (proj) {
         // Thumbnail
         var thumbSVG = (proj.thumbIcon && ICONS.thumb[proj.thumbIcon]) || '';
@@ -160,6 +161,7 @@
 
   function renderTutorials(container) {
     return fetchJSON('content/tutorials.json').then(function (tutorials) {
+      tutorials = tutorials.filter(function (tut) { return tut.visible !== false; });
       container.innerHTML = tutorials.map(function (tut) {
         var tagsHTML = tut.tags.map(function (tag) {
           return '<span class="tutorial-tag">' + tag + '</span>';
