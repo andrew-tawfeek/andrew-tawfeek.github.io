@@ -1,6 +1,6 @@
 # andrew-tawfeek.github.io
 
-Personal website for Andrew R. Tawfeek — mathematician and ML researcher.
+Personal website of Andrew R. Tawfeek.
 
 ## Project Structure
 
