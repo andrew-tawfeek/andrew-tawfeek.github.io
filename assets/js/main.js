@@ -10,7 +10,7 @@
   /* -------------------------------------------------------------------------
      Theme Management
      Persists user preference to localStorage.
-     Default: dark. Toggle via button; respects system preference on first visit.
+     Default: light. Toggle via button.
      ------------------------------------------------------------------------- */
   const ThemeManager = (() => {
     const STORAGE_KEY = 'site-theme';
@@ -20,17 +20,11 @@
     /**
      * Detect preferred theme in order:
      * 1. Saved preference in localStorage
-     * 2. System prefers-color-scheme
-     * 3. Default: dark
+     * 2. Default: light
      */
     function getPreferredTheme() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === DARK || saved === LIGHT) return saved;
-
-      // Check system preference
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return DARK;
-      }
       return LIGHT;
     }
 
@@ -48,7 +42,7 @@
     }
 
     function toggle() {
-      const current = document.documentElement.getAttribute('data-theme') || DARK;
+      const current = document.documentElement.getAttribute('data-theme') || LIGHT;
       applyTheme(current === DARK ? LIGHT : DARK);
     }
 
@@ -63,9 +57,9 @@
 
       // Respond to system-level changes if user hasn't set a preference
       if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
           if (!localStorage.getItem(STORAGE_KEY)) {
-            applyTheme(e.matches ? LIGHT : DARK);
+            applyTheme(e.matches ? DARK : LIGHT);
           }
         });
       }
