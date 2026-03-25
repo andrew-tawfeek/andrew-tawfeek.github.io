@@ -17,8 +17,7 @@
     "status": "Submitted",
     "statusClass": "submitted",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2411.10578" },
-      { "label": "PDF", "url": "https://arxiv.org/pdf/2411.10578" }
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2411.10578" }
     ]
   },
   {
@@ -31,7 +30,7 @@
     "statusClass": "accepted",
     "links": [
       { "label": "arXiv", "url": "https://arxiv.org/abs/2510.12700" },
-      { "label": "PDF", "url": "https://arxiv.org/pdf/2510.12700" },
+      { "label": "Journal", "url": "https://proceedings.mlr.press/v321/bosca26a.html" },
       { "label": "Code", "url": "https://github.com/gtri/neural-network-elements" },
       { "label": "Demo", "url": "https://andrew-tawfeek.github.io/neural-network-elements/" }
     ]
@@ -44,7 +43,7 @@
     "url": "https://doi.org/10.2140/jsag.2024.14.175",
     "links": [
       { "label": "arXiv", "url": "https://arxiv.org/abs/2312.00106" },
-      { "label": "DOI", "url": "https://doi.org/10.2140/jsag.2024.14.175" },
+      { "label": "Journal", "url": "https://doi.org/10.2140/jsag.2024.14.175" },
       { "label": "Package", "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html" },
       { "label": "Code", "url": "https://github.com/Macaulay2/M2/tree/stable/M2/Macaulay2/packages/A1BrouwerDegrees" }
     ]
@@ -57,7 +56,7 @@
     "url": "https://doi.org/10.1007/s00026-023-00655-1",
     "links": [
       { "label": "arXiv", "url": "https://arxiv.org/abs/2105.05388" },
-      { "label": "DOI", "url": "https://doi.org/10.1007/s00026-023-00655-1" },
+      { "label": "Journal", "url": "https://doi.org/10.1007/s00026-023-00655-1" },
       { "label": "Code", "url": "https://github.com/andrew-tawfeek/discrete-gradients" }
     ]
   },
@@ -68,7 +67,7 @@
     "year": 2022,
     "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7",
     "links": [
-      { "label": "DOI", "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7" }
+      { "label": "Journal", "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7" }
     ]
   },
   {
@@ -78,8 +77,7 @@
     "year": 2020,
     "url": "https://arxiv.org/abs/2007.02864",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2007.02864" },
-      { "label": "PDF", "url": "https://arxiv.org/pdf/2007.02864" }
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2007.02864" }
     ]
   }
 ]
