@@ -1,5 +1,10 @@
 [
   {
+    "date": "May 2026",
+    "datetime": "2026-03",
+    "text": "Attending <a href=\"https://d-torrance.github.io/m2gt26/\" target=\"_blank\" rel=\"noopener noreferrer\"><em>Building the Future of Macaulay2</em></a> at Georgia Tech."
+  },
+  {
     "date": "Mar 2026",
     "datetime": "2026-03",
     "text": "Updated <em>A tropical framework for using Porteous formula</em> on arXiv to v2 following referee comments."
