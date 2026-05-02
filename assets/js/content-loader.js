@@ -124,14 +124,6 @@
     return fetchJSON('content/projects.json').then(function (projects) {
       projects = projects.filter(function (proj) { return proj.visible !== false; });
       container.innerHTML = projects.map(function (proj) {
-        // Thumbnail
-        var thumbSVG = (proj.thumbIcon && ICONS.thumb[proj.thumbIcon]) || '';
-        var thumbHTML = '<div class="project-thumb" aria-hidden="true">' +
-          '<div class="project-thumb-placeholder">' +
-          thumbSVG +
-          proj.name.toLowerCase().replace(/\s+/g, '-') +
-          '</div></div>';
-
         // Tech badges
         var techHTML = proj.tech.map(function (t) {
           return '<span class="tech-badge">' + t + '</span>';
@@ -149,7 +141,6 @@
         }).join('');
 
         return '<article class="project-card" aria-labelledby="proj-' + proj.id + '-title">' +
-          thumbHTML +
           '<div class="project-body">' +
           '<h2 class="project-name" id="proj-' + proj.id + '-title">' + proj.name + '</h2>' +
           '<p class="project-desc">' + proj.description + '</p>' +

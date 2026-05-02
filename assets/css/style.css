@@ -828,38 +828,6 @@ code, .mono {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* Project thumbnail area */
-.project-thumb {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.project-thumb-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  font-family: var(--font-mono);
-}
-
-.project-thumb-placeholder svg {
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  opacity: 0.5;
-}
-
 .project-body {
   padding: 1.25rem;
   flex: 1;
