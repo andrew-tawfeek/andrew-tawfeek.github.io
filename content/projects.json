@@ -1,5 +1,16 @@
 [
   {
+    "id": "steering",
+    "name": "Steering",
+    "description": "A local interpretability workbench for live SAE feature steering in TransformerLens models. Built at OpenAI's Bellevue Codex Hackathon, it combines a FastAPI web UI, CLI, Textual TUI, SAE Lens hooks, and Neuronpedia label caching to compare baseline and steered GPT-2 small continuations from identical prompts.",
+    "tech": ["Python", "FastAPI", "TransformerLens", "SAE Lens", "Neuronpedia", "Textual"],
+    "links": [
+      { "type": "github", "url": "https://github.com/andrew-tawfeek/steering", "label": "Code" }
+    ],
+    "thumbIcon": "network",
+    "visible": true
+  },
+  {
     "id": "nne",
     "name": "Neural Network Elements",
     "description": "An interactive web-based tool for analyzing the geometry of ReLU neural networks. Computes polyhedral decompositions of the input space, constructs dual graphs of activation regions, performs spectral analysis via Laplacian eigendecomposition, and visualizes decision boundaries — all in the browser, with no server required. Approximately 4,200 lines of code, released by the Georgia Tech Research Institute.",
