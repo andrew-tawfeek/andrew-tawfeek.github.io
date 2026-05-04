@@ -1,7 +1,7 @@
 [
   {
     "id": "volatility-complex",
-    "name": "The Volatility Complex",
+    "name": "Volatility Complex",
     "description": "A pipeline for topological analysis of S&P 500 sector volatility using Vietoris-Rips complexes and persistent homology. Computes rolling volatility correlations from log-returns, converts them to a correlation-based distance metric, and builds time-varying simplicial complexes whose evolution reveals market regime structure — dense complexes during periods of stress, fragmented clusters during calm regimes — while tracking multi-scale topological features via filtration. Built as the capstone project for the Erdős Institute Quantitative Finance Bootcamp.",
     "tech": ["Python", "NumPy", "pandas", "GUDHI", "Persistent Homology", "Topological Data Analysis"],
     "links": [
