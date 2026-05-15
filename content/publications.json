@@ -1,21 +1,27 @@
 [
   {
     "title": "Taming Wild Knots with Mosaics",
-    "authors": "Mary Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
-    "venue": "Manuscript in preparation, 2025\u20132026",
+    "authors": "Mary Y. Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
+    "venue": "Preprint, arXiv:2605.14185",
     "year": 2026,
-    "status": "In preparation",
-    "statusClass": "in-prep",
-    "links": []
+    "url": "https://arxiv.org/abs/2605.14185",
+    "status": "Submitted",
+    "statusClass": "submitted",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2605.14185" }
+    ]
   },
   {
     "title": "The KnotMosaics Package for SageMath",
-    "authors": "Mary Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
-    "venue": "Manuscript in preparation, 2025\u20132026",
+    "authors": "Mary Y. Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
+    "venue": "Preprint, arXiv:2605.14189",
     "year": 2026,
-    "status": "In preparation",
-    "statusClass": "in-prep",
-    "links": []
+    "url": "https://arxiv.org/abs/2605.14189",
+    "status": "Submitted",
+    "statusClass": "submitted",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2605.14189" }
+    ]
   },
   {
     "title": "A Tropical Framework for using Porteous' Formula",
