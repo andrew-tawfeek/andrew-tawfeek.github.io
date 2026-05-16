@@ -61,7 +61,7 @@
   },
   {
     "id": "dg",
-    "name": "Discrete Gradients",
+    "name": "Discrete Gradients in SageMath",
     "description": "A SageMath library for computing discrete gradient vector fields on simplicial complexes via Morse theory. Implements algorithms for constructing and analyzing discrete Morse functions, computing Laplacian eigendecompositions, and extracting topological features. Released as companion code for the Annals of Combinatorics publication (2023).",
     "tech": ["Python", "SageMath", "Discrete Morse Theory", "Algebraic Topology"],
     "links": [
