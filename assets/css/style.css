@@ -585,7 +585,15 @@ code, .mono {
   color: var(--text-secondary);
 }
 
-.bio-text p { margin-bottom: 0.85rem; }
+.bio-text p,
+.bio-text .bio-note { margin-bottom: 0.85rem; }
+
+.bio-text ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.bio-text li { margin-bottom: 0.2rem; }
 
 /* --------------------------------------------------------------------------
    Research Interest Badges

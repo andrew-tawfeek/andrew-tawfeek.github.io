@@ -60,7 +60,8 @@
   function renderAbout(container) {
     return fetchJSON('content/about.json').then(function (paragraphs) {
       container.innerHTML = paragraphs.map(function (p) {
-        return '<p>' + p + '</p>';
+        var isBlock = /^\s*<(address|article|aside|blockquote|div|dl|fieldset|figcaption|figure|footer|form|h[1-6]|header|hr|main|nav|ol|p|pre|section|table|ul)\b/i.test(p);
+        return isBlock ? p : '<p>' + p + '</p>';
       }).join('');
     });
   }
