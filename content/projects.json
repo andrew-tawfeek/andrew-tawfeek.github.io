@@ -1,5 +1,18 @@
 [
   {
+    "id": "m2-internals-dev",
+    "name": "Macaulay2 Internals Dev",
+    "description": "A set of developer-facing resources for exploring the internals of the Macaulay2 computer algebra system, built for the Building the Future of Macaulay2 workshop at Georgia Tech. They include an interactive explorer of Macaulay2's C++ engine — a tree view of implementation boundaries and a top-down workspace map of its subsystems — alongside a visual guide to the engine and full Doxygen-generated API documentation, to help new contributors navigate and extend the core codebase.",
+    "tech": ["Macaulay2", "C++", "Doxygen", "Documentation"],
+    "links": [
+      { "type": "demo", "url": "http://atawfeek.com/M2-engine/web/", "label": "Macaulay2 Internals" },
+      { "type": "demo", "url": "https://atawfeek.com/M2-engine/engine/", "label": "Macaulay2 Engine Visual" },
+      { "type": "demo", "url": "https://atawfeek.com/M2-engine/docs/", "label": "Macaulay2 Engine Doxygen" }
+    ],
+    "thumbIcon": "algebra",
+    "visible": true
+  },
+  {
     "id": "knot-mosaics-sage",
     "name": "KnotMosaics Package for SageMath",
     "description": "A SageMath package for constructing, visualizing, and analyzing knot mosaic diagrams. Represents an n-mosaic as a matrix of standard tile labels and implements the local connectivity rules needed to validate mosaics, trace strands and components, compute planar diagram codes, generate random examples, and construct rational tangle mosaics. The planar diagram interface bridges mosaic representations to existing knot and link software (e.g. for computing Jones polynomials or knot Floer homology checks). Submitted upstream to SageMath as PR #42157.",
