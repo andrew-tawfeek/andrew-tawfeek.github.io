@@ -8,8 +8,12 @@
     "status": "Submitted",
     "statusClass": "submitted",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2605.14185" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2605.14185"
+      }
+    ],
+    "abstract": "Wild knots\u2014knots with infinite knotting behavior\u2014have resisted traditional methods of knot classification, making them more of a curiosity in topology than a subject of sustained investigation. In this paper, we present a new way to investigate these objects. We extend Lomonaco and Kauffman's knot mosaic theory to represent a substantial subclass of wild knots that have isolated wild points. Our mosaics consist of infinite rooted trees with mosaics assigned to vertices and embedding functions governing connections. In developing this framework, we also introduce a notion of mosaic tangles as well as mosaic rigid vertex spatial graphs of which mosaic singular knots are a special case."
   },
   {
     "title": "The KnotMosaics Package for SageMath",
@@ -20,8 +24,12 @@
     "status": "Submitted",
     "statusClass": "submitted",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2605.14189" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2605.14189"
+      }
+    ],
+    "abstract": "We introduce KnotMosaics, a SageMath package for constructing, visualizing, and analyzing knot mosaic diagrams. The package represents an n-mosaic as a matrix of standard tile labels and implements the local connectivity rules needed to validate mosaics, trace strands and components, compute planar diagram codes, generate random examples, and construct rational tangle mosaics. The planar diagram interface connects the mosaic representation to existing knot and link software, enabling computations such as Jones polynomials and knot Floer homology checks. We describe the package design, its main algorithms, and representative examples that illustrate how KnotMosaics can support computational exploration in knot mosaic theory."
   },
   {
     "title": "A Tropical Framework for using Porteous' Formula",
@@ -32,8 +40,12 @@
     "status": "Submitted",
     "statusClass": "submitted",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2411.10578" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2411.10578"
+      }
+    ],
+    "abstract": "Given a rational polyhedral space X (a tropical cycle with boundary, in the sense of Mikhalkin\u2013Rau), one can define tropical vector bundles on X having real or tropical fibers. By restricting attention to bounded rational sections of these bundles, one obtains characteristic classes that behave as expected classically. We develop further properties of these classes and use them to prove a tropical analogue of the splitting principle, which allows us to establish the foundations for Porteous' formula in this setting: a determinantal expression for the fundamental class of degeneracy loci in terms of Chern classes. The boundary framework is essential, as it allows the rank of a bundle morphism to drop at sedentary strata, giving degeneracy loci their expected codimension."
   },
   {
     "title": "Topological Signatures of ReLU Neural Network Activation Patterns",
@@ -44,11 +56,24 @@
     "status": "PMLR 2025",
     "statusClass": "accepted",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2510.12700" },
-      { "label": "Journal", "url": "https://proceedings.mlr.press/v321/bosca26a.html" },
-      { "label": "Code", "url": "https://github.com/gtri/neural-network-elements" },
-      { "label": "Demo", "url": "https://andrew-tawfeek.github.io/neural-network-elements/" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2510.12700"
+      },
+      {
+        "label": "Journal",
+        "url": "https://proceedings.mlr.press/v321/bosca26a.html"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/gtri/neural-network-elements"
+      },
+      {
+        "label": "Demo",
+        "url": "https://andrew-tawfeek.github.io/neural-network-elements/"
+      }
+    ],
+    "abstract": "This paper explores the topological signatures of ReLU neural network activation patterns. We consider feedforward neural networks with ReLU activation functions and analyze the polytope decomposition of the feature space induced by the network. Mainly, we investigate how the Fiedler partition of the dual graph and show that it appears to correlate with the decision boundary\u2014in the case of binary classification. Additionally, we compute the homology of the cellular decomposition\u2014in a regression task\u2014to draw similar patterns in behavior between the training loss and polyhedral cell-count, as the model is trained."
   },
   {
     "title": "A\u00b9-Brouwer Degrees in Macaulay2",
@@ -57,11 +82,24 @@
     "year": 2024,
     "url": "https://doi.org/10.2140/jsag.2024.14.175",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2312.00106" },
-      { "label": "Journal", "url": "https://doi.org/10.2140/jsag.2024.14.175" },
-      { "label": "Package", "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html" },
-      { "label": "Code", "url": "https://github.com/Macaulay2/M2/tree/stable/M2/Macaulay2/packages/A1BrouwerDegrees" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2312.00106"
+      },
+      {
+        "label": "Journal",
+        "url": "https://doi.org/10.2140/jsag.2024.14.175"
+      },
+      {
+        "label": "Package",
+        "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/Macaulay2/M2/tree/stable/M2/Macaulay2/packages/A1BrouwerDegrees"
+      }
+    ],
+    "abstract": "We describe the Macaulay2 package \"A1BrouwerDegrees\" for computing local and global A\u00b9-Brouwer degrees and studying symmetric bilinear forms over the complex numbers, the real numbers, the rational numbers, and finite fields of characteristic not equal to 2."
   },
   {
     "title": "On Discrete Gradient Vector Fields and Laplacians of Simplicial Complexes",
@@ -70,10 +108,20 @@
     "year": 2023,
     "url": "https://doi.org/10.1007/s00026-023-00655-1",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2105.05388" },
-      { "label": "Journal", "url": "https://doi.org/10.1007/s00026-023-00655-1" },
-      { "label": "Code", "url": "https://github.com/andrew-tawfeek/discrete-gradients" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2105.05388"
+      },
+      {
+        "label": "Journal",
+        "url": "https://doi.org/10.1007/s00026-023-00655-1"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/andrew-tawfeek/discrete-gradients"
+      }
+    ],
+    "abstract": "Discrete Morse theory, a cell complex-analog to smooth Morse theory, has been developed over the past few decades since its original formulation by Robin Forman in 1998. In particular, discrete gradient vector fields on simplicial complexes capture important features of discrete Morse functions. We prove that the characteristic polynomials of the Laplacian matrices of a simplicial complex are generating functions for discrete gradient vector fields of discrete Morse functions when the complex is either a graph or a triangulation of an orientable manifold. Furthermore, we provide a full characterization of the correspondence between rooted forests in higher dimensions and discrete gradient vector fields."
   },
   {
     "title": "Quantum Jacobi Forms and Sums of Tails Identities",
@@ -82,8 +130,12 @@
     "year": 2022,
     "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7",
     "links": [
-      { "label": "Journal", "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7" }
-    ]
+      {
+        "label": "Journal",
+        "url": "https://link.springer.com/article/10.1007/s40993-021-00304-7"
+      }
+    ],
+    "abstract": "Our results are on the interconnected topics of quantum Jacobi sums of tails identities, quantum Jacobi and mock Jacobi properties of two-variable q-hypergeometric series and partial theta functions, and two-variable q-hypergeometric generating functions for certain L-values by way of related asymptotic expansions. More specifically, we establish five two-variable quantum Jacobi sums of tails identities. As corollaries, we recover known one-variable quantum sum of tails identities due to Zagier, Andrews\u2013Jim\u00e9nez-Urroz\u2013Ono, and more. Further, justifying the \"quantum Jacobi\" description of our two-variable sums of tails identities, we establish the quantum Jacobi and mock Jacobi properties of a number of two-variable q-hypergeometric series and partial Jacobi theta functions which appear in our two-variable sums of tails identities, inspired by related results of Zagier and Rolen\u2013Schneider in the one-variable quantum modular setting. Finally, by establishing related asymptotic expansions, we realize generating functions for certain L-values in terms of two-variable q-hypergeometric series and Jacobi partial theta functions, inspired by earlier work in this direction by Andrews\u2013Jim\u00e9nez-Urroz\u2013Ono for the Riemann \u03b6-function and Dirichlet and Hecke L-functions."
   },
   {
     "title": "An Introduction to Geodesics: The Shortest Distance Between Two Points",
@@ -92,7 +144,11 @@
     "year": 2020,
     "url": "https://arxiv.org/abs/2007.02864",
     "links": [
-      { "label": "arXiv", "url": "https://arxiv.org/abs/2007.02864" }
-    ]
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2007.02864"
+      }
+    ],
+    "abstract": "We give an accessible introduction and elaboration on the methods used in obtaining a geodesic, which is the curve of shortest length connecting two points lying on the surface of a function. This is found through computing what's known as the variation of a functional, a \"function of functions\" of sorts. Geodesics are of great importance with wide applications, e.g. dictating the path followed by aircraft (great-circles), how light travels through space, assist in the process of mapping a 2D image to a 3D surface, and robot motion planning."
   }
 ]

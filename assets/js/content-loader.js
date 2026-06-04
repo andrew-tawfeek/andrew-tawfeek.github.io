@@ -105,7 +105,11 @@
             '" target="_blank" rel="noopener noreferrer">' + link.label + '</a>';
         }).join('');
 
-        // Collapsed by default: title + authors shown; venue + links in expandable details.
+        var abstractHTML = pub.abstract
+          ? '<p class="pub-abstract"><span class="pub-abstract-label">Abstract:</span> ' + pub.abstract + '</p>'
+          : '';
+
+        // Collapsed by default: title + authors shown; venue + abstract + links in expandable details.
         return '<article class="pub-card is-collapsed" role="listitem">' +
           '<div class="pub-head">' +
             '<button class="pub-toggle" type="button" aria-expanded="false" aria-label="Toggle publication details">' +
@@ -118,6 +122,7 @@
           '</div>' +
           '<div class="pub-details" hidden>' +
             '<p class="pub-venue">' + pub.venue + '</p>' +
+            abstractHTML +
             '<div class="pub-links">' + linksHTML + '</div>' +
           '</div>' +
           '</article>';
