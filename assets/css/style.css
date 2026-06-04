@@ -1223,3 +1223,20 @@ code, .mono {
     color: black;
   }
 }
+
+/* Collapsible publications (collapsed by default; expand for venue + links) */
+.pub-head { display: flex; align-items: flex-start; gap: .5rem; cursor: pointer; }
+.pub-headtext { flex: 1 1 auto; min-width: 0; }
+.pub-toggle {
+  flex: 0 0 auto; margin-top: .2rem; padding: 0; width: 1.1rem; height: 1.1rem;
+  background: none; border: none; cursor: pointer; color: var(--accent, currentColor);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.pub-caret {
+  display: inline-block; width: 0; height: 0;
+  border-left: 6px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+  transition: transform .15s ease;
+}
+.pub-card.is-expanded .pub-caret { transform: rotate(90deg); }
+.pub-details { margin-top: .45rem; }
+.pub-toggle:focus-visible { outline: 2px solid var(--accent, #06c); outline-offset: 2px; }

@@ -105,13 +105,43 @@
             '" target="_blank" rel="noopener noreferrer">' + link.label + '</a>';
         }).join('');
 
-        return '<article class="pub-card" role="listitem">' +
-          '<div class="pub-title">' + titleHTML + statusHTML + '</div>' +
-          '<p class="pub-authors">' + authors + '</p>' +
-          '<p class="pub-venue">' + pub.venue + '</p>' +
-          '<div class="pub-links">' + linksHTML + '</div>' +
+        // Collapsed by default: title + authors shown; venue + links in expandable details.
+        return '<article class="pub-card is-collapsed" role="listitem">' +
+          '<div class="pub-head">' +
+            '<button class="pub-toggle" type="button" aria-expanded="false" aria-label="Toggle publication details">' +
+              '<span class="pub-caret" aria-hidden="true"></span>' +
+            '</button>' +
+            '<div class="pub-headtext">' +
+              '<div class="pub-title">' + titleHTML + statusHTML + '</div>' +
+              '<p class="pub-authors">' + authors + '</p>' +
+            '</div>' +
+          '</div>' +
+          '<div class="pub-details" hidden>' +
+            '<p class="pub-venue">' + pub.venue + '</p>' +
+            '<div class="pub-links">' + linksHTML + '</div>' +
+          '</div>' +
           '</article>';
       }).join('');
+
+      // Wire up collapse/expand toggles (click the header or caret; the title link still works).
+      container.querySelectorAll('.pub-card').forEach(function (card) {
+        var head = card.querySelector('.pub-head');
+        var btn = card.querySelector('.pub-toggle');
+        var details = card.querySelector('.pub-details');
+        function toggle() {
+          var expanded = !card.classList.contains('is-expanded');
+          card.classList.toggle('is-expanded', expanded);
+          card.classList.toggle('is-collapsed', !expanded);
+          if (details) details.hidden = !expanded;
+          if (btn) btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+        if (head) {
+          head.addEventListener('click', function (e) {
+            if (e.target.closest('a')) return; // let the title link navigate normally
+            toggle();
+          });
+        }
+      });
     });
   }
 
