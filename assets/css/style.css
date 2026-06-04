@@ -1240,5 +1240,10 @@ code, .mono {
 .pub-card.is-expanded .pub-caret { transform: rotate(90deg); }
 .pub-details { margin-top: .45rem; }
 .pub-toggle:focus-visible { outline: 2px solid var(--accent, #06c); outline-offset: 2px; }
-.pub-abstract { margin-top: .5rem; line-height: 1.5; }
-.pub-abstract-label { font-weight: 600; }
+.pub-abstract {
+  margin-top: .5rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.pub-abstract-label { font-weight: 600; color: var(--text-secondary); }
