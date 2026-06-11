@@ -1,5 +1,10 @@
 [
   {
+    "date": "June 2026",
+    "datetime": "2026-06",
+    "text": "Released <a href=\"https://huggingface.co/atawfeek/gemma-4-e4b-it-saes\" target=\"_blank\" rel=\"noopener noreferrer\">sparse autoencoders for gemma-4-E4B-it</a> on HuggingFace."
+  },
+  {
     "date": "May 2026",
     "datetime": "2026-03",
     "text": "Attending <a href=\"https://d-torrance.github.io/m2gt26/\" target=\"_blank\" rel=\"noopener noreferrer\">Building the Future of Macaulay2</a> at Georgia Tech."

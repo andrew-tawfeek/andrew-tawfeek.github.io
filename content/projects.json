@@ -1,5 +1,17 @@
 [
   {
+    "id": "gemma-it-saes",
+    "name": "Sparse Autoencoders for Gemma-4-E4B-it",
+    "description": "Trained and published sparse autoencoders for the instruction-tuned google/gemma-4-E4B-it after discovering that the official base-model SAEs fail catastrophically on its activations (held-out variance explained below zero at every layer). Warm-starting from the base SAEs and continue-training ~25M tokens per layer on a mix of pile and chat-template data recovers them to VE ≈ 0.81–0.87 at the original sparsity (L0 ≈ 100). Three matryoshka batch-topk SAEs (layers 7/21/35, 65,536 features each) released on HuggingFace in sae_lens format, with a model card documenting an evaluation-methodology finding: 0.1% of tokens can carry over half the reconstruction error, so short-text evals dramatically overstate SAE health.",
+    "tech": ["Python", "PyTorch", "SAE Lens", "Sparse Autoencoders", "Mechanistic Interpretability", "HuggingFace"],
+    "links": [
+      { "type": "demo", "url": "https://huggingface.co/atawfeek/gemma-4-e4b-it-saes", "label": "HuggingFace" },
+      { "type": "github", "url": "https://github.com/andrew-tawfeek/gemma4-e4b-it-sae", "label": "Code" }
+    ],
+    "thumbIcon": "network",
+    "visible": true
+  },
+  {
     "id": "m2-internals-dev",
     "name": "Macaulay2 Internals Dev",
     "description": "A set of developer-facing resources for exploring the internals of the Macaulay2 computer algebra system, built for the Building the Future of Macaulay2 workshop at Georgia Tech. They include an interactive explorer of Macaulay2's C++ engine — a tree view of implementation boundaries and a top-down workspace map of its subsystems — alongside a visual guide to the engine and full Doxygen-generated API documentation, to help new contributors navigate and extend the core codebase.",
