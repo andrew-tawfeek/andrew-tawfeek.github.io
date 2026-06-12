@@ -254,6 +254,27 @@
   })();
 
   /* -------------------------------------------------------------------------
+     Tutorials Nav Gate
+     The Tutorials link is hidden by default (CSS). Reveal it only when at least
+     one tutorial in content/tutorials.json is published, so the nav never points
+     to an empty Tutorials page.
+     ------------------------------------------------------------------------- */
+  const TutorialsNavGate = (() => {
+    function init() {
+      const basePath = window.location.pathname.indexOf('/tutorials/') !== -1 ? '../' : '';
+      fetch(basePath + 'content/tutorials.json')
+        .then(res => (res.ok ? res.json() : Promise.reject(res.status)))
+        .then(tutorials => {
+          const anyLive = Array.isArray(tutorials) &&
+            tutorials.some(t => t && t.published === true);
+          if (anyLive) document.body.classList.add('tutorials-live');
+        })
+        .catch(() => { /* on error, leave the Tutorials link hidden */ });
+    }
+    return { init };
+  })();
+
+  /* -------------------------------------------------------------------------
      Initialization
      Wait for DOM to be ready, then wire everything up.
      ------------------------------------------------------------------------- */
@@ -263,6 +284,7 @@
     ActiveNav.init();
     SmoothScroll.init();
     NavScroll.init();
+    TutorialsNavGate.init();
   }
 
   if (document.readyState === 'loading') {

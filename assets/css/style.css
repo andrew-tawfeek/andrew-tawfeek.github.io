@@ -397,6 +397,19 @@ code, .mono {
   background: var(--accent-subtle);
 }
 
+/* Tutorials nav link — gated: hidden until at least one tutorial is published.
+   main.js adds body.tutorials-live when content/tutorials.json has published:true. */
+.nav-links li:has(> a[href$="tutorials.html"]),
+.nav-mobile-drawer a[href$="tutorials.html"] {
+  display: none;
+}
+body.tutorials-live .nav-links li:has(> a[href$="tutorials.html"]) {
+  display: list-item;
+}
+body.tutorials-live .nav-mobile-drawer a[href$="tutorials.html"] {
+  display: block;
+}
+
 /* --------------------------------------------------------------------------
    Page Layout — Offset for fixed nav
    -------------------------------------------------------------------------- */
@@ -431,8 +444,8 @@ code, .mono {
 
 /* Profile photo / avatar */
 .sidebar-photo {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: auto;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 1.25rem;
@@ -442,8 +455,7 @@ code, .mono {
 
 .sidebar-photo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -488,7 +500,7 @@ code, .mono {
 
 /* Sidebar social icons */
 .sidebar-social {
-  display: flex;
+  display: none; /* shown only on mobile (≤640px); the top-bar social covers wider screens */
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 1.25rem;
@@ -1147,7 +1159,7 @@ code, .mono {
 
   .sidebar-photo {
     width: 140px;
-    height: 140px;
+    height: auto;
     margin-bottom: 1rem;
   }
 
@@ -1182,7 +1194,12 @@ code, .mono {
 
   .sidebar-photo {
     width: 110px;
-    height: 110px;
+    height: auto;
+  }
+
+  /* Social links return under the photo on mobile, where the top-bar icons hide */
+  .sidebar-social {
+    display: flex;
   }
 
   .news-item {
