@@ -104,6 +104,89 @@ if ! grep -q '\.local/bin' "$HOME/.bashrc" 2>/dev/null; then
   echo "==> Added ~/.local/bin to ~/.bashrc"
 fi
 
+echo "==> Installing dotfiles (.vimrc)"
+mkdir -p "$HOME/.vim/undo"
+if [[ -f "$HOME/.vimrc" ]]; then
+  echo "    ~/.vimrc already exists; left as-is"
+else
+  cat > "$HOME/.vimrc" <<'VIMRC'
+" ~/.vimrc — tuned for iTerm "Galaxy" theme (background #1d2837)
+
+set nocompatible          " use Vim features, not vi-compatible mode
+syntax on                 " enable syntax highlighting
+filetype plugin indent on " detect filetype, load plugins + indent rules
+
+set background=dark
+set termguicolors         " 24-bit color so the exact Galaxy hexes render
+
+" Sensible defaults
+set number                " show line numbers (current line = absolute)...
+set relativenumber        " ...other lines relative -> hybrid gutter
+set scrolloff=5           " keep 5 lines of context above/below the cursor
+set splitbelow            " :split opens the new window below
+set splitright            " :vsplit opens the new window to the right
+set tabstop=4             " a tab is 4 spaces wide
+set shiftwidth=4          " autoindent uses 4 spaces
+set expandtab             " convert tabs to spaces
+set autoindent            " keep indentation on new lines
+set incsearch             " incremental search
+set hlsearch              " highlight search matches
+set ruler                 " show cursor position
+set cursorline            " highlight the current line
+set linebreak             " soft-wrap at word boundaries, not mid-word
+set wildmenu              " visual tab-completion in the : command line
+set clipboard=unnamed     " yank/paste through the macOS system clipboard
+
+" Persistent undo — undo history survives closing the file
+set undofile
+set undodir=~/.vim/undo//
+
+" --- Galaxy-tuned syntax colors -------------------------------------------
+" Every group is pinned to a high-contrast Galaxy palette color so nothing
+" falls back to the theme's dark blues/grays, which are unreadable on #1d2837.
+" Wrapped in an autocmd so it survives any later :colorscheme change.
+function! s:GalaxyHighlights() abort
+  " Base
+  highlight Normal       guifg=#ffffff guibg=#1d2837
+  highlight Comment      guifg=#8492ac gui=italic cterm=italic
+  highlight LineNr       guifg=#5c6c88
+  highlight NonText      guifg=#3a4a64               " ~ markers, listchars
+  highlight EndOfBuffer  guifg=#3a4a64               " ~ below the last line
+  highlight CursorLine   guibg=#26344a gui=NONE cterm=NONE
+  highlight CursorLineNr guifg=#ffff55 gui=bold
+  highlight Visual       guibg=#b5d5ff guifg=#000000
+
+  " Syntax groups (distinct, all high-contrast on the Galaxy background)
+  highlight Constant     guifg=#fa8c8f               " numbers, booleans
+  highlight String       guifg=#21b089               " green
+  highlight Identifier   guifg=#589df6 gui=NONE      " variables, blue
+  highlight Function     guifg=#1f9ee7               " functions / builtins, cyan
+  highlight Statement    guifg=#e75699               " keywords (if/def/return), pink
+  highlight PreProc      guifg=#e75699               " imports, decorators
+  highlight Type         guifg=#fef02a               " types / classes, yellow
+  highlight Special      guifg=#ffff55
+
+  " UI / search
+  highlight Search       guibg=#fef02a guifg=#000000
+  highlight IncSearch    guibg=#e75699 guifg=#000000
+  highlight MatchParen   guibg=#944d95 guifg=#ffffff " dark purple works as a bg
+  highlight Todo         guibg=#fef02a guifg=#000000
+  highlight Error        guibg=#f9555f guifg=#ffffff
+  highlight StatusLine   guibg=#589df6 guifg=#000000
+  highlight StatusLineNC guibg=#26344a guifg=#bbbbbb
+  highlight Pmenu        guibg=#26344a guifg=#ffffff
+  highlight PmenuSel     guibg=#589df6 guifg=#000000
+endfunction
+
+augroup GalaxyColors
+  autocmd!
+  autocmd ColorScheme * call s:GalaxyHighlights()
+augroup END
+call s:GalaxyHighlights()
+VIMRC
+  echo "    wrote ~/.vimrc"
+fi
+
 # --- Mobile/console SSH: auto-land interactive logins on the primary work user ---
 # On GCP with OS Login OFF, the console/mobile SSH creates a Linux user named after your
 # Google account on first connect. This drops an interactive login by any non-primary,
