@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
-# carepackage.sh — bootstrap a fresh Ubuntu/Debian box with python, devtools, gh, claude.
-# Auth is not configured here; copy ~/.config/gh and ~/.claude separately.
+# carepackage.sh — quick-start a fresh Ubuntu/Debian box: swap, devtools, python, gh,
+# claude, codex, mosh, and mobile-friendly SSH (auto-land interactive logins on your
+# primary user).
+#
+# No secrets live in this script. Auth is configured separately: copy ~/.config/gh and
+# ~/.claude over, and run `codex login` (e.g. `codex login --device-auth` on a headless box).
+#
+# Usage:   curl -fsSL https://atawfeek.com/carepackage.sh | bash
+#   Vars:  SWAP_SIZE=8G              swapfile size (default 4G)
+#          PRIMARY_USER=<name>       user to land mobile/console SSH on (default: current user)
 
 set -euo pipefail
 
@@ -37,9 +45,10 @@ $SUDO apt-get update -qq
 
 echo "==> Installing devtools and python"
 $SUDO DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  build-essential git curl wget unzip ca-certificates \
-  tmux vim htop jq \
+  build-essential git curl wget unzip ca-certificates rsync \
+  tmux vim htop jq tree ncdu ripgrep mosh \
   python3 python3-pip python3-venv
+# mosh = SSH that survives roaming/disconnects (great from a phone); ripgrep=rg, ncdu=disk usage.
 
 echo "==> Installing gh"
 if command -v gh >/dev/null 2>&1; then
@@ -95,12 +104,43 @@ if ! grep -q '\.local/bin' "$HOME/.bashrc" 2>/dev/null; then
   echo "==> Added ~/.local/bin to ~/.bashrc"
 fi
 
+# --- Mobile/console SSH: auto-land interactive logins on the primary work user ---
+# On GCP with OS Login OFF, the console/mobile SSH creates a Linux user named after your
+# Google account on first connect. This drops an interactive login by any non-primary,
+# non-root human user straight into PRIMARY_USER (where your tools + auth live), and gives
+# PRIMARY_USER passwordless sudo so that switch (and admin) needs no password.
+# Guarded: scp/sftp/non-interactive sessions are untouched, and there is no switch loop.
+# Opt out per-session with AUTO_NO_SWITCH=1; disable by removing the profile.d file below.
+PRIMARY_USER="${PRIMARY_USER:-$(id -un)}"
+if [[ "$PRIMARY_USER" != "root" ]] && id "$PRIMARY_USER" >/dev/null 2>&1; then
+  echo "==> Configuring mobile/console SSH to land on '$PRIMARY_USER'"
+  printf '%s ALL=(ALL:ALL) NOPASSWD:ALL\n' "$PRIMARY_USER" \
+    | $SUDO tee "/etc/sudoers.d/90-${PRIMARY_USER}-nopasswd" >/dev/null
+  $SUDO chmod 0440 "/etc/sudoers.d/90-${PRIMARY_USER}-nopasswd"
+  $SUDO visudo -cf "/etc/sudoers.d/90-${PRIMARY_USER}-nopasswd" >/dev/null \
+    || $SUDO rm -f "/etc/sudoers.d/90-${PRIMARY_USER}-nopasswd"
+  # System-wide login hook — also covers users created later (e.g. on first phone SSH).
+  $SUDO tee /etc/profile.d/00-land-on-primary.sh >/dev/null <<PROFILE
+# Auto-switch an interactive login into the primary work user. Added by carepackage.sh.
+PRIMARY_USER="$PRIMARY_USER"
+if [ -t 0 ] && [ -t 1 ] && [ -z "\${AUTO_NO_SWITCH:-}" ]; then
+  _me="\$(id -un)"
+  if [ "\$_me" != "\$PRIMARY_USER" ] && [ "\$_me" != "root" ] && id "\$PRIMARY_USER" >/dev/null 2>&1; then
+    exec sudo -iu "\$PRIMARY_USER"
+  fi
+fi
+PROFILE
+  $SUDO chmod 0644 /etc/profile.d/00-land-on-primary.sh
+  echo "    interactive SSH (incl. from your phone) will land on '$PRIMARY_USER' (AUTO_NO_SWITCH=1 to skip)"
+fi
+
 echo ""
 echo "==> Done. Open a new shell or run: source ~/.bashrc"
 echo ""
 echo "Installed versions:"
-python3 --version
-gh --version | head -1
-"$HOME/.local/bin/claude" --version 2>/dev/null || command -v claude && claude --version
-codex --version 2>/dev/null || "$HOME/.npm-global/bin/codex" --version 2>/dev/null || echo "codex: not on PATH yet (run: source ~/.bashrc)"
-source ~/.bashrc
+python3 --version || true
+gh --version 2>/dev/null | head -1 || true
+mosh-server --version 2>/dev/null | head -1 || true
+{ claude --version 2>/dev/null || "$HOME/.local/bin/claude" --version 2>/dev/null; } || echo "claude: run 'source ~/.bashrc'"
+{ codex --version 2>/dev/null || "$HOME/.npm-global/bin/codex" --version 2>/dev/null; } || echo "codex: not on PATH yet (run: source ~/.bashrc)"
+source ~/.bashrc 2>/dev/null || true
