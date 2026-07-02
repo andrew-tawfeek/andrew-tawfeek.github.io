@@ -6,6 +6,10 @@
 # No secrets live in this script. Auth is configured separately: copy ~/.config/gh and
 # ~/.claude over, and run `codex login` (e.g. `codex login --device-auth` on a headless box).
 #
+# Runs on a fresh Ubuntu/Debian server OR under WSL — on WSL the server-only sections
+# (swapfile, mobile-SSH land-on-primary, and the hardening trio) auto-skip; the dev tooling
+# still installs. Same one-liner works in both.
+#
 # Usage:   curl -fsSL https://atawfeek.com/carepackage.sh | bash
 #   Vars:  SWAP_SIZE=8G              swapfile size (default 4G)
 #          PRIMARY_USER=<name>       user to land mobile/console SSH on (default: current user)
@@ -21,8 +25,19 @@ if [[ $EUID -ne 0 ]]; then
   SUDO="sudo"
 fi
 
+# Detect WSL (Windows Subsystem for Linux). On WSL we skip the server-only sections
+# (swapfile, mobile-SSH land-on-primary, and unattended-upgrades/fail2ban/ufw) — they are
+# unnecessary there and can error under `set -e`. All dev + CLI + Python tooling still installs.
+IS_WSL=0
+if grep -qiE "microsoft|WSL" /proc/version 2>/dev/null || [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+  IS_WSL=1
+  echo "==> WSL detected — skipping server-only sections (swap, SSH land-on-primary, hardening)"
+fi
+
 echo "==> Configuring ${SWAP_SIZE} swapfile"
-if $SUDO swapon --show 2>/dev/null | grep -q '/swapfile' || [[ -e /swapfile ]]; then
+if [[ "$IS_WSL" == 1 ]]; then
+  echo "    WSL — skipping (swap is managed by Windows via .wslconfig)"
+elif $SUDO swapon --show 2>/dev/null | grep -q '/swapfile' || [[ -e /swapfile ]]; then
   echo "    swap already present; skipping"
 else
   # dd fallback needs a count in MiB; convert SWAP_SIZE (G/M suffix supported)
@@ -183,6 +198,7 @@ if ! grep -q '\.local/bin' "$HOME/.bashrc" 2>/dev/null; then
   echo "==> Added ~/.local/bin to ~/.bashrc"
 fi
 
+if [[ "$IS_WSL" == 0 ]]; then
 echo "==> Server hardening: unattended-upgrades"
 $SUDO apt-get install -y unattended-upgrades || true
 # Enable automatic security updates (idempotent: tee overwrites with the same content).
@@ -205,6 +221,9 @@ $SUDO apt-get install -y ufw || true
 $SUDO ufw allow OpenSSH 2>/dev/null || $SUDO ufw allow 22/tcp 2>/dev/null || true
 $SUDO ufw allow 60000:61000/udp 2>/dev/null || true   # mosh
 echo "    ufw installed + SSH/mosh allowed but left disabled; enable when ready with: sudo ufw enable"
+else
+  echo "==> WSL — skipping server hardening (unattended-upgrades / fail2ban / ufw)"
+fi
 
 echo "==> Installing dotfiles (.vimrc)"
 mkdir -p "$HOME/.vim/undo"
@@ -346,7 +365,7 @@ git config --global core.excludesfile "$HOME/.gitignore_global"
 # Guarded: scp/sftp/non-interactive sessions are untouched, and there is no switch loop.
 # Opt out per-session with AUTO_NO_SWITCH=1; disable by removing the profile.d file below.
 PRIMARY_USER="${PRIMARY_USER:-$(id -un)}"
-if [[ "$PRIMARY_USER" != "root" ]] && id "$PRIMARY_USER" >/dev/null 2>&1; then
+if [[ "$IS_WSL" == 0 ]] && [[ "$PRIMARY_USER" != "root" ]] && id "$PRIMARY_USER" >/dev/null 2>&1; then
   echo "==> Configuring mobile/console SSH to land on '$PRIMARY_USER'"
   printf '%s ALL=(ALL:ALL) NOPASSWD:ALL\n' "$PRIMARY_USER" \
     | $SUDO tee "/etc/sudoers.d/90-${PRIMARY_USER}-nopasswd" >/dev/null
