@@ -25,7 +25,12 @@
 #   Vars:  SWAP_SIZE=8G              swapfile size (default 4G; Linux servers only)
 #          PRIMARY_USER=<name>       user to land mobile/console SSH on (default: current user)
 
-set -euo pipefail
+# NOTE: intentionally NOT using `set -e`. This is a best-effort quick-start that must
+# ALWAYS run to completion — writing the dotfiles + ~/CAREPACKAGE.txt at the end even if
+# an individual tool fails to install (e.g. a package missing from a fresh distro's repos,
+# no network to a mirror, npm not yet present). A single failed install must not abort the
+# whole run. `-u` (unset-var guard) and `-o pipefail` are kept; each install self-reports.
+set -uo pipefail
 
 # Swap size for the swapfile (override at runtime, e.g. SWAP_SIZE=8G bash carepackage.sh).
 # Accepts a fallocate-style size like 2G, 4G, 512M.
@@ -104,7 +109,7 @@ fi
 # On Linux, refresh apt once up front (mac has no apt).
 if [[ "$IS_MAC" == 0 ]]; then
   echo "==> apt update"
-  $SUDO apt-get update -qq
+  $SUDO apt-get update -qq || echo "    WARN: apt update failed (stale/unreachable repos?); continuing — some installs may fail"
 fi
 
 # pkg_install <cmd_to_check> <brew_pkg> <apt_pkg>
@@ -261,7 +266,7 @@ elif [[ "$IS_MAC" == 1 ]]; then
   echo "    installing eza (brew)"
   brew install eza || echo "    WARN: brew install eza failed; skipping"
 elif apt-cache show eza >/dev/null 2>&1; then
-  $SUDO apt-get install -y eza
+  $SUDO apt-get install -y eza || echo "    WARN: apt install eza failed; skipping"
 else
   # Older Ubuntu has no eza package; grab the latest release binary for this arch.
   echo "    no eza apt package; downloading release binary"
@@ -432,14 +437,17 @@ else
 fi
 
 # ---------------------------------------------------------------------------
-# Dotfiles — cross-platform ($HOME files; written only if missing)
+# Dotfiles — cross-platform ($HOME files; installed, backing up any existing copy once)
 # ---------------------------------------------------------------------------
 echo "==> Installing dotfiles (.vimrc)"
 mkdir -p "$HOME/.vim/undo"
-if [[ -f "$HOME/.vimrc" ]]; then
-  echo "    ~/.vimrc already exists; left as-is"
-else
-  cat > "$HOME/.vimrc" <<'VIMRC'
+# Deploy the carepackage .vimrc. If one already exists, preserve it as a one-time backup
+# (never clobber a prior backup) so nothing is lost, then install this one.
+if [[ -f "$HOME/.vimrc" && ! -f "$HOME/.vimrc.pre-carepackage.bak" ]]; then
+  cp "$HOME/.vimrc" "$HOME/.vimrc.pre-carepackage.bak"
+  echo "    backed up existing ~/.vimrc -> ~/.vimrc.pre-carepackage.bak"
+fi
+cat > "$HOME/.vimrc" <<'VIMRC'
 " ~/.vimrc — tuned for iTerm "Galaxy" theme (background #1d2837)
 
 set nocompatible          " use Vim features, not vi-compatible mode
@@ -514,14 +522,15 @@ augroup GalaxyColors
 augroup END
 call s:GalaxyHighlights()
 VIMRC
-  echo "    wrote ~/.vimrc"
-fi
+echo "    wrote ~/.vimrc"
 
 echo "==> Installing dotfiles (.tmux.conf)"
-if [[ -f "$HOME/.tmux.conf" ]]; then
-  echo "    ~/.tmux.conf already exists; left as-is"
-else
-  cat > "$HOME/.tmux.conf" <<'TMUXCONF'
+# Same policy as .vimrc: back up any existing tmux.conf once, then install this one.
+if [[ -f "$HOME/.tmux.conf" && ! -f "$HOME/.tmux.conf.pre-carepackage.bak" ]]; then
+  cp "$HOME/.tmux.conf" "$HOME/.tmux.conf.pre-carepackage.bak"
+  echo "    backed up existing ~/.tmux.conf -> ~/.tmux.conf.pre-carepackage.bak"
+fi
+cat > "$HOME/.tmux.conf" <<'TMUXCONF'
 # ~/.tmux.conf — mobile-friendly defaults (written by carepackage.sh)
 
 set -g mouse on                 # scroll/select/resize with the mouse or touchscreen
@@ -542,8 +551,7 @@ set -g status-right-length 60
 set -g status-left  " #S "
 set -g status-right " #H  %Y-%m-%d %H:%M "
 TMUXCONF
-  echo "    wrote ~/.tmux.conf"
-fi
+echo "    wrote ~/.tmux.conf"
 
 echo "==> Configuring git defaults (no name/email — those are per-user)"
 # Safe, opinionated global git defaults. Name + email are intentionally NOT set here.
@@ -828,10 +836,12 @@ ufw — host firewall. INSTALLED BUT LEFT DISABLED on purpose (these GCP boxes a
  DOTFILES / CONFIG  (all platforms)
 --------------------------------------------------------------------------------
 ~/.vimrc — vim config: Galaxy theme, hybrid line numbers, persistent undo, 4-space
-  indent. Written only if missing (won't clobber an existing one).
+  indent. Installed on every run; any pre-existing ~/.vimrc is saved once to
+  ~/.vimrc.pre-carepackage.bak before this one is written.
 
 ~/.tmux.conf — mouse on, 100k scrollback, 1-based windows/panes, true color,
-  vi copy-mode keys, informative status bar. Written only if missing.
+  vi copy-mode keys, informative status bar. Installed on every run; any pre-existing
+  ~/.tmux.conf is saved once to ~/.tmux.conf.pre-carepackage.bak first.
 
 git defaults — global, safe, no name/email (set those per-user yourself):
   init.defaultBranch=main, pull.rebase=true, push.default=simple, core.editor=vim.
