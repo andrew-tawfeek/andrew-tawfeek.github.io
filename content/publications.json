@@ -37,8 +37,6 @@
     "venue": "Preprint, arXiv:2411.10578",
     "year": 2024,
     "url": "https://arxiv.org/abs/2411.10578",
-    "status": "Submitted",
-    "statusClass": "submitted",
     "links": [
       {
         "label": "arXiv",
@@ -53,8 +51,6 @@
     "venue": "Proceedings of Machine Learning Research, 2025",
     "year": 2025,
     "url": "https://arxiv.org/abs/2510.12700",
-    "status": "PMLR 2025",
-    "statusClass": "accepted",
     "links": [
       {
         "label": "arXiv",
