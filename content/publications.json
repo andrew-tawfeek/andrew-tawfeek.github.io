@@ -1,15 +1,5 @@
 [
   {
-    "title": "Universal Rooted Collapse: Classification and Regularity",
-    "authors": "Andrew R. Tawfeek",
-    "venue": "Submitted, 2026",
-    "year": 2026,
-    "status": "Submitted",
-    "statusClass": "submitted",
-    "links": [],
-    "abstract": "We characterize finite simplicial complexes for which every rooted forest in every dimension collapses to its root. This property is equivalent to strong unimodularity of the second signed boundary matrix. In particular, such complexes have dimension at most three, and their simplicial matroids are regular."
-  },
-  {
     "title": "Taming Wild Knots with Mosaics",
     "authors": "Mary Y. Deng, Allison K. Henrich, Sean H. Kawano, Andrew R. Tawfeek",
     "venue": "Preprint, arXiv:2605.14185",
